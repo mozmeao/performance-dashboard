@@ -1,0 +1,30 @@
+{
+  "name": "mozmeao-web-performance-dashboard",
+  "version": "1.0.0",
+  "description": "A front-end websites performance dashboard for Mozilla Marketing Engineering & Operations.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prebuild": "./node_modules/.bin/eslint .",
+    "build": "node app.js",
+    "prestart": "npm run build",
+    "start": "./node_modules/.bin/serve ./dashboard"
+  },
+  "keywords": [
+    "lighthouse",
+    "website",
+    "performance"
+  ],
+  "author": "Alex Gibson",
+  "license": "MPL-2.0",
+  "dependencies": {
+    "lighthouse": "^2.8.0",
+    "shelljs": "^0.8.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.16.0",
+    "serve": "^6.4.9"
+  },
+  "repository": "https://github.com/mozmeao/performance-dashboard.git",
+  "private": true
+}

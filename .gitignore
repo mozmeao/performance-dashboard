@@ -1,3 +1,6 @@
+# Dashboard reports
+dashboard/report/
+
 # Logs
 logs
 *.log
