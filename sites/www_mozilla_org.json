@@ -1,0 +1,9 @@
+{
+    "name": "www_mozilla_org",
+    "pages": [
+        "https://www.mozilla.org/en-US/",
+        "https://www.mozilla.org/en-US/firefox/",
+        "https://www.mozilla.org/en-US/firefox/mobile/",
+        "https://www.mozilla.org/en-US/firefox/new/"
+    ]
+}
