@@ -1,6 +1,8 @@
 {
     "name": "developer_mozilla_org",
     "pages": [
-        "https://developer.mozilla.org/en-US/"
+        "https://developer.mozilla.org/en-US/",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/flex-flow"
     ]
 }
