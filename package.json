@@ -4,8 +4,9 @@
   "description": "A front-end websites performance dashboard for Mozilla Marketing Engineering & Operations.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prebuild": "./node_modules/.bin/eslint .",
+    "pretest": "./node_modules/.bin/eslint .",
+    "test": "jest",
+    "prebuild": "npm test",
     "build": "node app.js",
     "prestart": "npm run build",
     "start": "./node_modules/.bin/serve ./dashboard"
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "eslint": "^4.16.0",
+    "jest": "^22.2.1",
     "serve": "^6.4.9"
   },
   "repository": "https://github.com/mozmeao/performance-dashboard.git",
