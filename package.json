@@ -1,7 +1,7 @@
 {
   "name": "mozmeao-web-performance-dashboard",
   "version": "1.0.0",
-  "description": "A front-end websites performance dashboard for Mozilla Marketing Engineering & Operations.",
+  "description": "Front End Web Performance Dashboard for Mozilla Marketing Engineering & Operations.",
   "main": "app.js",
   "scripts": {
     "pretest": "./node_modules/.bin/eslint .",

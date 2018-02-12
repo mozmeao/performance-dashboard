@@ -11,12 +11,34 @@
         }
     }
 
-    function generateTable(site, rows) {
+    function getDisplayName(fileName) {
+        let prefix = fileName.substr(0, fileName.lastIndexOf('.')); // strip .json file extension if exists.
+        let name = prefix ? prefix : fileName;
+        return name.replace(/_/g, '.');
+    }
+
+    function renderSelectMenu(sites) {
+        return `
+            <form>
+                <label for="website-select">Select a website:</label>
+                <select id="website-select">
+                    <option selected disabled>Select a website</option>
+                    ${sites}
+                </select>
+            </form>
+        `;
+    }
+
+    function renderSelectOption(name, value) {
+        return `<option value="${value}">${name}</option>`;
+    }
+
+    function renderReportTable(name, date, rows) {
         return `
             <table>
                 <caption>
-                    <h2>${site.name}</h2>
-                    <time>${site.date}</time>
+                    <h2>${name}</h2>
+                    <time>${date}</time>
                 </caption>
                 <thead>
                 <tr>
@@ -35,35 +57,62 @@
         `;
     }
 
-    function generateTableRow(name, page) {
+    function renderReportTableRow(name, page, scores) {
         return `
             <tr>
-                <td><a rel="noopener noreferrer" target="_blank" href="${page.url}">${page.url}</a></td>
+                <td><a href="${page.url}">${page.url}</a></td>
                 <td><a download href="/reports/${name}/${page.json}">Download</a></td>
                 <td><a href="/reports/${name}/${page.html}">View report</a></td>
-                <td><meter value="${page.scores.performance}" min="0" max="100" low="80" optimum="100">${page.scores.performance}</meter> ${page.scores.performance}</td>
-                <td><meter value="${page.scores.pwa}" min="0" max="100" low="80" optimum="100">${page.scores.pwa}</meter> ${page.scores.pwa}</td>
-                <td><meter value="${page.scores.accessibility}" min="0" max="100" low="80" optimum="100">${page.scores.accessibility}</meter> ${page.scores.accessibility}</td>
-                <td><meter value="${page.scores.bestpractices}" min="0" max="100" low="80" optimum="100">${page.scores.bestpractices}</meter> ${page.scores.bestpractices}</td>
-                <td><meter value="${page.scores.seo}" min="0" max="100" low="80" optimum="100">${page.scores.seo}</meter> ${page.scores.seo}</td>
+                ${scores}
             </tr>
         `;
     }
 
-    function updateDashboard(table) {
-        document.querySelector('.dashboard').insertAdjacentHTML('beforeend', table);
+    function renderScore(name, score) {
+        return `
+            <td><meter value="${score}" min="0" max="100" low="50" high="80" optimum="100">${score}</meter> ${score}</td>
+        `;
+    }
+
+    function displayNavigation(menu) {
+        document.querySelector('nav').insertAdjacentHTML('beforeend', menu);
+
+        document.getElementById('website-select').addEventListener('change', (e) => {
+            e.preventDefault();
+            displayWebsiteReport(e.target.value);
+        });
+    }
+
+    function displayReport(table) {
+        document.querySelector('.dashboard').innerHTML = table;
+    }
+
+    function displayWebsiteReport(report) {
+        fetchSummary(report).then(site => {
+            let name = getDisplayName(site.name);
+            let rows = site.pages.map(page => {
+                let scores = '';
+
+                Object.entries(page.scores).forEach(([key, value]) => {
+                    scores += renderScore(key, value);
+                });
+
+                return renderReportTableRow(site.name, page, scores);
+            }).join('');
+
+            displayReport(renderReportTable(name, site.date, rows));
+        });
     }
 
     fetchSummary('index.json').then(data => {
-        data.sites.forEach(site => {
-            fetchSummary(site).then(site => {
-                let rows = site.pages.map(page => {
-                    return generateTableRow(site.name, page);
-                }).join('');
+        let options = data.sites.map(site => {
+            let name = getDisplayName(site);
+            return renderSelectOption(name, site);
+        }).join('');
 
-                updateDashboard(generateTable(site, rows));
-            });
-        });
+        let menu = renderSelectMenu(options);
+
+        displayNavigation(menu);
     });
 
 })();

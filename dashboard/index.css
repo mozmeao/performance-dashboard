@@ -1,12 +1,22 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+/* -------------------------------------------------------------------
+ * Common elements */
+
 body {
-    background-color: #eaeaea;
-    color: #515151;
+    background-color: #fff;
+    color: #000;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 main {
     margin: 60px 0;
 }
+
+/* -------------------------------------------------------------------
+ * Dashboard header */
 
 header {
     text-align: center;
@@ -17,22 +27,13 @@ header p {
     margin: 20px auto;
 }
 
-h1 {
-    color: #005fb8;
-}
-
 p {
     line-height: 1.5;
 }
 
-.dashboard {
-    max-width: 1400px;
-    margin: 20px auto;
-}
-
 a:link,
 a:visited {
-    color: #005fb8;
+    color: #0a84ff;
     text-decoration: none;
 }
 
@@ -40,6 +41,27 @@ a:hover,
 a:active,
 a:focus {
     text-decoration: underline;
+}
+
+/* -------------------------------------------------------------------
+ * Navigation */
+
+form {
+    text-align: center;
+}
+
+form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* -------------------------------------------------------------------
+ * Dashboard tables */
+
+.dashboard {
+    max-width: 1400px;
+    margin: 20px auto;
 }
 
 table {
@@ -70,6 +92,44 @@ table td {
     padding: 10px;
     border: 1px solid #515151;
 }
+
+/* -------------------------------------------------------------------
+ * Score meter styling */
+
+meter {
+    background: #e7e5e2;
+}
+
+meter:-moz-meter-optimum::-moz-meter-bar {
+    background: #33F70C;
+}
+
+meter:-moz-meter-sub-optimum::-moz-meter-bar {
+    background: #ffa500;
+}
+
+meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+    background: #ff0000;
+}
+
+meter::-webkit-meter-bar {
+    background: #e7e5e2;
+}
+
+meter::-webkit-meter-optimum-value {
+    background: #33F70C;
+}
+
+meter::-webkit-meter-suboptimum-value {
+    background: #ffa500;
+}
+
+meter::-webkit-meter-even-less-good-value {
+    background: #ff0000;
+}
+
+/* -------------------------------------------------------------------
+ * Dashboard footer */
 
 footer {
     text-align: center;
