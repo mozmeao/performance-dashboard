@@ -4,10 +4,18 @@ A front-end websites performance dashboard for Mozilla Marketing Engineering & O
 
 ## Install
 
-First make sure you have [Yarn](https://yarnpkg.com/) installed, then run:
+First make sure you have [Node](https://nodejs.org/), [Yarn](https://yarnpkg.com/) and [Chrome](https://www.google.com/chrome/) installed. Then run:
 
 ```
 yarn
+```
+
+## Test
+
+To run linting and unit tests:
+
+```
+npm test
 ```
 
 ## Build
@@ -18,9 +26,9 @@ To generate reports:
 npm run build
 ```
 
-## Local dev server
+## Run
 
-To generate reports and then automatically start a local dev server to view the dashboard:
+To automatically run tests, build reports and spin up a dashboard:
 
 ```
 npm start
