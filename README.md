@@ -1,6 +1,8 @@
 # MozMEAO Web Performance Dashboard
 
-A front-end websites performance dashboard for Mozilla Marketing Engineering & Operations. Powered by Google [Lighthouse](https://developers.google.com/web/tools/lighthouse/).
+Front End Web Performance Dashboard for Mozilla Marketing Engineering & Operations.
+
+Powered by Google [Lighthouse](https://developers.google.com/web/tools/lighthouse/).
 
 ## Install
 
