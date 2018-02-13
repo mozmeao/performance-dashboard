@@ -43,13 +43,12 @@
                 <thead>
                 <tr>
                     <th scope="col">Page</th>
-                    <th scope="col">JSON</th>
-                    <th scope="col">HTML Report</th>
                     <th scope="col">Performance</th>
                     <th scope="col">PWA</th>
                     <th scope="col">Accessibility</th>
                     <th scope="col">Best Practices</th>
                     <th scope="col">SEO</th>
+                    <th scope="col">Report</th>
                 </tr>
                 </thead>
                 <tbody>${rows}</tbody>
@@ -61,9 +60,8 @@
         return `
             <tr>
                 <td><a href="${page.url}">${page.url}</a></td>
-                <td><a download href="/reports/${name}/${page.json}">Download</a></td>
-                <td><a href="/reports/${name}/${page.html}">View report</a></td>
                 ${scores}
+                <td><a href="/reports/${name}/${page.html}">View report</a></td>
             </tr>
         `;
     }

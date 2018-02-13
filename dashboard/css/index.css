@@ -56,6 +56,11 @@ form label {
     margin-bottom: 10px;
 }
 
+form select {
+    font-family: inherit;
+    font-size: 1rem;
+}
+
 /* -------------------------------------------------------------------
  * Dashboard tables */
 
