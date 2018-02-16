@@ -1,0 +1,32 @@
+{
+    "name": "www_mozilla_org",
+    "date": "Tue Feb 13 2018",
+    "pages": [
+        {
+            "url": "https://www.mozilla.org/en-US/",
+            "name": "www_mozilla_org_en-US_",
+            "json": "www_mozilla_org_en-US_.report.json",
+            "html": "www_mozilla_org_en-US_.report.html",
+            "scores": {
+                "performance": "85",
+                "pwa": "55",
+                "accessibility": "84",
+                "bestpractices": "88",
+                "seo": "90"
+            }
+        },
+        {
+            "url": "https://www.mozilla.org/en-US/firefox/",
+            "name": "www_mozilla_org_en-US_firefox_",
+            "json": "www_mozilla_org_en-US_firefox_.report.json",
+            "html": "www_mozilla_org_en-US_firefox_.report.html",
+            "scores": {
+                "performance": "70",
+                "pwa": "55",
+                "accessibility": "86",
+                "bestpractices": "88",
+                "seo": "90"
+            }
+        }
+    ]
+}
