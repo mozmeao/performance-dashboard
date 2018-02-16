@@ -4,6 +4,8 @@ Front End Web Performance Dashboard for Mozilla Marketing Engineering & Operatio
 
 Powered by Google [Lighthouse](https://developers.google.com/web/tools/lighthouse/).
 
+[![Build Status](https://travis-ci.org/mozmeao/performance-dashboard.svg?branch=master)](https://travis-ci.org/mozmeao/performance-dashboard)
+
 ## Install
 
 First make sure you have [Node](https://nodejs.org/), [Yarn](https://yarnpkg.com/) and [Chrome](https://www.google.com/chrome/) installed. Then run:
