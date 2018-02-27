@@ -32,9 +32,16 @@ npm run build
 
 ## Run
 
-To automatically run tests, build reports and spin up a dashboard:
+To generate reports for all sites and spin up a dashboard:
 
 ```
 npm start
 ```
 
+To generate reports for a single site:
+
+```
+node app.js -s <fileName>
+```
+
+Note: `<fileName>` should be a JSON config file in the `./sites` directory.
