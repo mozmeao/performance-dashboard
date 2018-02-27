@@ -7,7 +7,11 @@
 const summary = require('../lib/summary');
 
 test('getReportName', () => {
-    expect(summary.getReportName('https://www.mozilla.org/en-US/firefox/')).toEqual('www_mozilla_org_en-US_firefox_');
+    expect(summary.getReportName('https://www.mozilla.org/en-US/firefox/', '2018-02-27')).toEqual('www_mozilla_org_en-US_firefox_2018_02_27');
+});
+
+test('getReportDate', () => {
+    expect(summary.getReportDate(1519731247822)).toEqual('2018-02-27');
 });
 
 test('format', () => {
@@ -16,17 +20,17 @@ test('format', () => {
         'https://www.mozilla.org/en-US/firefox/'
     ];
 
-    expect(summary.format(pages)).toEqual([
+    expect(summary.format(pages, '2018-02-27')).toEqual([
         {
-            'html': 'www_mozilla_org_en-US_.report.html',
-            'json': 'www_mozilla_org_en-US_.report.json',
-            'name': 'www_mozilla_org_en-US_',
+            'html': 'www_mozilla_org_en-US_2018_02_27.report.html',
+            'json': 'www_mozilla_org_en-US_2018_02_27.report.json',
+            'name': 'www_mozilla_org_en-US_2018_02_27',
             'url': 'https://www.mozilla.org/en-US/'
         },
         {
-            'html': 'www_mozilla_org_en-US_firefox_.report.html',
-            'json': 'www_mozilla_org_en-US_firefox_.report.json',
-            'name': 'www_mozilla_org_en-US_firefox_',
+            'html': 'www_mozilla_org_en-US_firefox_2018_02_27.report.html',
+            'json': 'www_mozilla_org_en-US_firefox_2018_02_27.report.json',
+            'name': 'www_mozilla_org_en-US_firefox_2018_02_27',
             'url': 'https://www.mozilla.org/en-US/firefox/'
         }
     ]);
