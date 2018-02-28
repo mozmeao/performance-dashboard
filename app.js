@@ -10,7 +10,7 @@ const program = require('commander');
 const runner = require('./lib/runner');
 const index = require('./lib/index');
 const sites = './sites';
-const summaryPath = './dashboard/summary/';
+const summaryPath = './dashboard/data/summary/';
 
 program
     .version(require('./package.json').version)

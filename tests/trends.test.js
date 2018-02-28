@@ -6,60 +6,38 @@
 
 const trends = require('../lib/trends');
 
-test('update() should create new trend data', () => {
-    let page = {
-        'html': 'www_mozilla_org_en-US_.report.html',
-        'json': 'www_mozilla_org_en-US_.report.json',
-        'name': 'www_mozilla_org_en-US_',
-        'scores': {
-            'performance': '85', 'pwa': '55', 'accessibility': '84', 'bestpractices': '88', 'seo': '90'
-        },
-        'url': 'https://www.mozilla.org/en-US/',
-    };
-
-    let result = trends.update('Tue Feb 13 2018', page);
-    expect(result).toEqual([
-        {
-            'date': 'Tue Feb 13 2018',
-            'scores': {
-                'accessibility': '84', 'bestpractices': '88', 'performance': '85', 'pwa': '55', 'seo': '90'
-            }
-        }
-    ]);
+test('getTrendName', () => {
+    expect(trends.getTrendName('https://www.mozilla.org/en-US/firefox/new/')).toEqual('www_mozilla_org_en-US_firefox_new_');
 });
 
-test('update() should append to existing trend data', () => {
-    let page = {
-        'html': 'www_mozilla_org_en-US_.report.html',
-        'json': 'www_mozilla_org_en-US_.report.json',
-        'name': 'www_mozilla_org_en-US_',
-        'scores': {
-            'accessibility': '84', 'bestpractices': '88', 'performance': '85', 'pwa': '55', 'seo': '90'
-        },
-        'trends': [
-            {
-                'date': 'Tue Feb 13 2018',
-                'scores': {
-                    'accessibility': '84', 'bestpractices': '88', 'performance': '85', 'pwa': '55', 'seo': '90'
-                }
+test('add() should append new trend data', () => {
+    let existing = [
+        {
+            'date': '2018-02-28',
+            'scores': {
+                'performance': '85', 'pwa': '55', 'accessibility': '84', 'bestpractices': '88', 'seo': '90'
             }
-        ],
-        'url': 'https://www.mozilla.org/en-US/'
+        }
+    ];
+    let current = {
+        'date': '2018-03-03',
+        'scores': {
+            'performance': '85', 'pwa': '55', 'accessibility': '84', 'bestpractices': '88', 'seo': '90'
+        }
     };
 
-    let result = trends.update('Tue Feb 14 2018', page);
-
+    let result = trends.add(existing, current);
     expect(result).toEqual([
         {
-            'date': 'Tue Feb 13 2018',
+            'date': '2018-02-28',
             'scores': {
-                'accessibility': '84', 'bestpractices': '88', 'performance': '85', 'pwa': '55', 'seo': '90'
+                'performance': '85', 'pwa': '55', 'accessibility': '84', 'bestpractices': '88', 'seo': '90'
             }
         },
         {
-            'date': 'Tue Feb 14 2018',
+            'date': '2018-03-03',
             'scores': {
-                'accessibility': '84', 'bestpractices': '88', 'performance': '85', 'pwa': '55', 'seo': '90'
+                'performance': '85', 'pwa': '55', 'accessibility': '84', 'bestpractices': '88', 'seo': '90'
             }
         }
     ]);

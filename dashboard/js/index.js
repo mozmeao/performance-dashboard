@@ -3,7 +3,7 @@
 
     async function fetchSummary(fileName) {
         try {
-            let response = await fetch(`summary/${fileName}`);
+            let response = await fetch(`data/summary/${fileName}`);
             let data = await response.json();
             return data;
         } catch(e) {
@@ -49,6 +49,7 @@
                     <th scope="col">Best Practices</th>
                     <th scope="col">SEO</th>
                     <th scope="col">Report</th>
+                    <th scope="col">Trend</th>
                 </tr>
                 </thead>
                 <tbody>${rows}</tbody>
@@ -61,7 +62,8 @@
             <tr>
                 <td><a href="${page.url}">${page.url}</a></td>
                 ${scores}
-                <td><a href="/reports/${name}/${page.html}">View report</a></td>
+                <td><a href="/data/reports/${name}/${page.html}">View report</a></td>
+                <td><a href="/data/trends/${name}/${page.trend}">View trend</a></td>
             </tr>
         `;
     }
