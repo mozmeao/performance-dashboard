@@ -41,7 +41,7 @@ npm start
 To generate reports for a single site:
 
 ```
-node app.js -s <fileName>
+node app.js -s <filePath>
 ```
 
-Note: `<fileName>` should be a JSON config file in the `./sites` directory.
+Note: `<filePath>` is a path to a JSON config file.

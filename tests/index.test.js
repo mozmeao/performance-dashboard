@@ -6,40 +6,28 @@
 
 const index = require('../lib/index');
 
-test('get', () => {
-    let indexPath = './tests/data/test_index.json';
+test('format', () => {
+    let files = [
+        'test_summary_a.json',
+        'test_summary_b.json',
+        'index.json',
+    ];
 
-    expect(index.get(indexPath)).toEqual({
+    expect(index.format(files)).toEqual({
         'sites': [
-            'https://www.mozilla.org/en-US/',
-            'https://www.mozilla.org/en-US/firefox/'
-        ]
-    });
-
-    expect(index.get('foo.json')).toEqual({
-        'sites': []
-    });
-});
-
-test('add() should add a new file name to the list', () => {
-    let data = index.get('./tests/data/test_index.json');
-
-    expect(index.add(data, 'https://www.mozilla.org/en-US/firefox/new/')).toEqual({
-        'sites': [
-            'https://www.mozilla.org/en-US/',
-            'https://www.mozilla.org/en-US/firefox/',
-            'https://www.mozilla.org/en-US/firefox/new/'
+            'test_summary_a.json',
+            'test_summary_b.json'
         ]
     });
 });
 
-test('add() should not add duplicates to the list', () => {
-    let data = index.get('./tests/data/test_index.json');
+test('create', () => {
+    let summaryPath = './tests/data/summary/';
 
-    expect(index.add(data, 'https://www.mozilla.org/en-US/')).toEqual({
-        'sites': [
-            'https://www.mozilla.org/en-US/',
-            'https://www.mozilla.org/en-US/firefox/'
+    expect(index.create(summaryPath)).toEqual({
+        sites: [
+            'test_summary_a.json',
+            'test_summary_b.json'
         ]
     });
 });
