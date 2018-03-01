@@ -24,18 +24,10 @@ npm test
 
 ## Build
 
-To generate reports:
+To generate reports for all sites:
 
 ```
 npm run build
-```
-
-## Run
-
-To generate reports for all sites and spin up a dashboard:
-
-```
-npm start
 ```
 
 To generate reports for a single site:
@@ -45,3 +37,11 @@ node app.js -s <filePath>
 ```
 
 Note: `<filePath>` is a path to a JSON config file.
+
+## Run
+
+To generate reports for all sites and spin up a dashboard:
+
+```
+npm start
+```
