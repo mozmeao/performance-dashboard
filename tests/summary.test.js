@@ -24,14 +24,14 @@ test('format', () => {
         {
             'html': 'www_mozilla_org_en-US_2018_02_27.report.html',
             'json': 'www_mozilla_org_en-US_2018_02_27.report.json',
-            'name': 'www_mozilla_org_en-US_',
+            'name': 'www_mozilla_org_en-US_2018_02_27',
             'trend': 'www_mozilla_org_en-US_.trend.json',
             'url': 'https://www.mozilla.org/en-US/'
         },
         {
             'html': 'www_mozilla_org_en-US_firefox_2018_02_27.report.html',
             'json': 'www_mozilla_org_en-US_firefox_2018_02_27.report.json',
-            'name': 'www_mozilla_org_en-US_firefox_',
+            'name': 'www_mozilla_org_en-US_firefox_2018_02_27',
             'trend': 'www_mozilla_org_en-US_firefox_.trend.json',
             'url': 'https://www.mozilla.org/en-US/firefox/'
         }

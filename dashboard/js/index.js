@@ -62,8 +62,8 @@
             <tr>
                 <td><a href="${page.url}">${page.url}</a></td>
                 ${scores}
-                <td><a href="/data/reports/${name}/${page.html}">View report</a></td>
-                <td><a href="/data/trends/${name}/${page.trend}">View trend</a></td>
+                <td><a href="data/reports/${name}/${page.html}">View report</a></td>
+                <td><a href="data/trends/${name}/${page.trend}">View trend</a></td>
             </tr>
         `;
     }
