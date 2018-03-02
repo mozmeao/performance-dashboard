@@ -1,5 +1,9 @@
 # Dashboard
-dashboard/data
+dashboard/data/reports
+dashboard/data/summary
+
+#gulp-gh-pages
+.publish
 
 # Logs
 logs
