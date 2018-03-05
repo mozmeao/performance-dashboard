@@ -7,7 +7,7 @@
     "pretest": "./node_modules/.bin/eslint .",
     "test": "jest",
     "prebuild": "npm test",
-    "build": "node app.js",
+    "build": "node app.js -k $npm_config_key",
     "prestart": "npm run build",
     "start": "./node_modules/.bin/serve ./dashboard"
   },
@@ -20,9 +20,8 @@
   "license": "MPL-2.0",
   "dependencies": {
     "commander": "^2.14.1",
-    "lighthouse": "^2.9.1",
     "mkdirp": "^0.5.1",
-    "shelljs": "^0.8.1"
+    "webpagetest": "^0.3.8"
   },
   "devDependencies": {
     "eslint": "^4.16.0",

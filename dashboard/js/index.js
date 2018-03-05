@@ -1,3 +1,7 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
 (function() {
     'use strict';
 
@@ -43,13 +47,16 @@
                 <thead>
                 <tr>
                     <th scope="col">Page</th>
+                    <th scope="col">Document Complete</th>
+                    <th scope="col">Fully Loaded</th>
+                    <th scope="col">Requests</th>
                     <th scope="col">Performance</th>
                     <th scope="col">PWA</th>
                     <th scope="col">Accessibility</th>
                     <th scope="col">Best Practices</th>
                     <th scope="col">SEO</th>
-                    <th scope="col">Report</th>
-                    <th scope="col">Trend</th>
+                    <th scope="col">WebPageTest</th>
+                    <th scope="col">Lighthouse</th>
                 </tr>
                 </thead>
                 <tbody>${rows}</tbody>
@@ -61,9 +68,12 @@
         return `
             <tr>
                 <td><a href="${page.url}">${page.url}</a></td>
+                <td>${page.metrics.documentComplete}ms</td>
+                <td>${page.metrics.fullyLoaded}ms</td>
+                <td>${page.metrics.requests}</td>
                 ${scores}
-                <td><a href="data/reports/${name}/${page.html}">View report</a></td>
-                <td><a href="data/trends/${name}/${page.trend}">View trend</a></td>
+                <td><a href="${page.summary}">View report</a></td>
+                <td><a href="${page.lighthouse}">View report</a></td>
             </tr>
         `;
     }

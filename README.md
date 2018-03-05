@@ -27,23 +27,26 @@ npm test
 To generate reports for all sites:
 
 ```
-npm run build
+npm run build -k <key>
 ```
 
 To generate reports for a single site:
 
 ```
-node app.js -s <filePath>
+node app.js -k <key> -s <filePath>
 ```
 
-Note: `<filePath>` is a path to a JSON config file.
+Options:
+
+- `<key>` WebPageTest API key.
+- `<filePath>` is a path to a JSON config file.
 
 ## Run
 
 To generate reports for all sites and spin up a dashboard:
 
 ```
-npm start
+npm start -k <key>
 ```
 
 ## Deploy

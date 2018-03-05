@@ -1,6 +1,5 @@
 # Dashboard
-dashboard/data/reports
-dashboard/data/summary
+dashboard/data/
 
 #gulp-gh-pages
 .publish
