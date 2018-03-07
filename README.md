@@ -33,13 +33,13 @@ npm run build -k <key>
 To generate reports for a single site:
 
 ```
-node app.js -k <key> -s <filePath>
+node app.js -k <key> -s <site>
 ```
 
 Options:
 
-- `<key>` WebPageTest API key.
-- `<filePath>` is a path to a JSON config file.
+- `-k, --key <key>` WebPageTest API key.
+- `-s, --site <site>` is a path to a JSON config file.
 
 ## Run
 
