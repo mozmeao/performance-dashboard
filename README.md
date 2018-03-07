@@ -2,7 +2,7 @@
 
 Front End Web Performance Dashboard for Mozilla Marketing Engineering & Operations.
 
-Powered by Google [Lighthouse](https://developers.google.com/web/tools/lighthouse/).
+Powered by [WebPageTest](https://www.webpagetest.org/) & Google [Lighthouse](https://developers.google.com/web/tools/lighthouse/).
 
 [![Build Status](https://travis-ci.org/mozmeao/performance-dashboard.svg?branch=master)](https://travis-ci.org/mozmeao/performance-dashboard)
 
