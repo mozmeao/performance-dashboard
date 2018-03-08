@@ -1,9 +1,6 @@
 # Dashboard
 dashboard/data/
 
-#gulp-gh-pages
-.publish
-
 # Logs
 logs
 *.log

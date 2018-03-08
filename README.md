@@ -48,11 +48,3 @@ To generate reports for all sites and spin up a dashboard:
 ```
 npm start -k <key>
 ```
-
-## Deploy
-
-To deploy to GitHub pages:
-
-```
-gulp deploy
-```
