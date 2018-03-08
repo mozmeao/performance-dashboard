@@ -26,7 +26,7 @@
             <form>
                 <label for="website-select">Select a website:</label>
                 <select id="website-select">
-                    <option selected disabled>Select a website</option>
+                    <option selected disabled>-- Choose --</option>
                     ${sites}
                 </select>
             </form>
