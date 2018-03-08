@@ -66,3 +66,6 @@ typings/
 # MacOS
 
 .DS_Store
+
+# Netlify
+.netlify
