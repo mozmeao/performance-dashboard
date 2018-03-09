@@ -84,10 +84,10 @@ table caption h2 {
     margin: 0;
 }
 
-table caption time {
+table caption .meta {
     margin-top: .5em;
     float: right;
-    font-style: italic;
+    font-size: 14px;
 }
 
 table th,

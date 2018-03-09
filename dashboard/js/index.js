@@ -37,12 +37,16 @@
         return `<option value="${value}">${name}</option>`;
     }
 
-    function renderReportTable(name, date, rows) {
+    function renderMetaData(date) {
+        return `<div class="meta"><strong>Location:</strong> ec2-us-west-2, <strong>Browser:</strong> Chrome, <strong>Connection:</strong> 3G, <strong>Date:</strong> <time>${date}</time></div>`;
+    }
+
+    function renderReportTable(name, meta, rows) {
         return `
             <table>
                 <caption>
                     <h2>${name}</h2>
-                    <time>${date}</time>
+                    ${meta}
                 </caption>
                 <thead>
                 <tr>
@@ -110,7 +114,10 @@
                 return renderReportTableRow(site.name, page, scores);
             }).join('');
 
-            displayReport(renderReportTable(name, site.date, rows));
+            let meta = renderMetaData(site.date);
+            let table = renderReportTable(name, meta, rows);
+
+            displayReport(table);
         });
     }
 
