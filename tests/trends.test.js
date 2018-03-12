@@ -13,6 +13,7 @@ test('getTrendName', () => {
 test('add() should append new trend data', () => {
     let existing = [
         {
+            'id': '180308_YK_dcbdf326749ba4db9c418b4407d361a8',
             'date': '2018-02-28',
             'scores': {
                 'performance': '85', 'pwa': '55', 'accessibility': '84', 'bestpractices': '88', 'seo': '90'
@@ -23,6 +24,7 @@ test('add() should append new trend data', () => {
         }
     ];
     let current = {
+        'id': '180308_JD_dcbdf326749ba4db9c418b4407d361a6',
         'date': '2018-03-03',
         'scores': {
             'performance': '85', 'pwa': '55', 'accessibility': '84', 'bestpractices': '88', 'seo': '90'
@@ -35,6 +37,7 @@ test('add() should append new trend data', () => {
     let result = trends.add(existing, current);
     expect(result).toEqual([
         {
+            'id': '180308_YK_dcbdf326749ba4db9c418b4407d361a8',
             'date': '2018-02-28',
             'scores': {
                 'performance': '85', 'pwa': '55', 'accessibility': '84', 'bestpractices': '88', 'seo': '90'
@@ -44,6 +47,7 @@ test('add() should append new trend data', () => {
             }
         },
         {
+            'id': '180308_JD_dcbdf326749ba4db9c418b4407d361a6',
             'date': '2018-03-03',
             'scores': {
                 'performance': '85', 'pwa': '55', 'accessibility': '84', 'bestpractices': '88', 'seo': '90'

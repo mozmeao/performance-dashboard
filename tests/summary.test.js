@@ -19,6 +19,7 @@ test('format', () => {
     let report = JSON.parse(fs.readFileSync('./tests/data/test_report.json'));
 
     expect(summary.format(report)).toEqual({
+        'id': '180308_YK_dcbdf326749ba4db9c418b4407d361a8',
         'lighthouse': 'https://www.webpagetest.org/lighthouse.php?test=180308_YK_dcbdf326749ba4db9c418b4407d361a8',
         'metrics': {
             'documentComplete': 7847,
