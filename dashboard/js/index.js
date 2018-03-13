@@ -61,6 +61,7 @@
                     <th scope="col">SEO</th>
                     <th scope="col">WebPageTest</th>
                     <th scope="col">Lighthouse</th>
+                    <th scope="col">Trend</th>
                 </tr>
                 </thead>
                 <tbody>${rows}</tbody>
@@ -78,6 +79,7 @@
                 ${scores}
                 <td><a href="${page.summary}">View report</a></td>
                 <td><a href="${page.lighthouse}">View report</a></td>
+                <td><a href="data/trends/${name}/${page.trend}">View</a></td>
             </tr>
         `;
     }

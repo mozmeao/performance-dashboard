@@ -10,6 +10,14 @@ test('getTrendName', () => {
     expect(trends.getTrendName('https://www.mozilla.org/en-US/firefox/new/')).toEqual('www_mozilla_org_en-US_firefox_new_');
 });
 
+test('getRemoteFilePath', () => {
+    expect(trends.getRemoteFilePath('www_mozilla_org', `www_mozilla_org_en-US_`)).toEqual('https://mozmeao-perf-dashboard.netlify.com/data/trends/www_mozilla_org/www_mozilla_org_en-US_.trend.json');
+});
+
+test('getLocalFilePath', () => {
+    expect(trends.getLocalFilePath('www_mozilla_org', `www_mozilla_org_en-US_`)).toEqual('./dashboard/data/trends/www_mozilla_org/www_mozilla_org_en-US_.trend.json');
+});
+
 test('add() should append new trend data', () => {
     let existing = [
         {

@@ -34,6 +34,7 @@ test('format', () => {
             'seo': '78'
         },
         'summary': 'https://www.webpagetest.org/results.php?test=180308_YK_dcbdf326749ba4db9c418b4407d361a8',
+        'trend': 'careers_mozilla_org_en-US_.trend.json',
         'url': 'https://careers.mozilla.org/en-US/'
     });
 });

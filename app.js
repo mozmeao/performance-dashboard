@@ -10,6 +10,7 @@
 
 const program = require('commander');
 const runner = require('./lib/runner');
+const trends = require('./lib/trends');
 const index = require('./lib/index');
 const sites = './sites';
 const summaryPath = './dashboard/data/summary/';
@@ -25,19 +26,28 @@ if (!program.key) {
     process.exit(1);
 }
 
-console.log('Running performance reports');
+console.log('Running performance reports…');
 
 // run reports for a single site or a directory of sites.
 if (program.site) {
-    runner.run(program.site, program.key).then(updateDashboard);
+    runner.run(program.site, program.key).then(updateTrends);
 } else {
-    runner.batch(sites, program.key).then(updateDashboard);
+    runner.batch(sites, program.key).then(updateTrends);
 }
 
-function updateDashboard() {
-    // create list of available reports post-run.
-    let indexFile = index.create(summaryPath);
-    index.write(indexFile);
+function updateTrends() {
+    trends.batch().then(() => {
+
+        // create index of available reports post-run to query in the dashboard.
+        let indexFile = index.create(summaryPath);
+        index.write(indexFile);
+
+        console.log('All finished!');
+
+    }).catch(err => {
+        console.error(err);
+        process.exit(1);
+    });
 }
 
 
