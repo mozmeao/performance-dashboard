@@ -13,6 +13,7 @@ test('getReportName', () => {
 
 test('getReportDate', () => {
     expect(summary.getReportDate(1519731247822)).toEqual('2018-02-27-11:34');
+    expect(summary.getReportDate(1521018106766)).toEqual('2018-03-14-09:01');
 });
 
 test('format', () => {

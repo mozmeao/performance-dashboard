@@ -37,13 +37,11 @@ if (program.site) {
 
 function updateTrends() {
     trends.batch().then(() => {
-
         // create index of available reports post-run to query in the dashboard.
         let indexFile = index.create(summaryPath);
         index.write(indexFile);
 
         console.log('All finished!');
-
     }).catch(err => {
         console.error(err);
         process.exit(1);
