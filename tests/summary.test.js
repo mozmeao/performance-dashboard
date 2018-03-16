@@ -12,8 +12,8 @@ test('getReportName', () => {
 });
 
 test('getReportDate', () => {
-    expect(summary.getReportDate(1519731247822)).toEqual('2018-02-27-11:34');
-    expect(summary.getReportDate(1521018106766)).toEqual('2018-03-14-09:01');
+    expect(summary.getReportDate(1519731247822)).toEqual('2018-02-27T11:34');
+    expect(summary.getReportDate(1521018106766)).toEqual('2018-03-14T09:01');
 });
 
 test('format', () => {
@@ -28,11 +28,11 @@ test('format', () => {
             'requests': 49
         },
         'scores': {
-            'accessibility': '81',
-            'bestpractices': '75',
-            'performance': '80',
-            'pwa': '55',
-            'seo': '78'
+            'accessibility': 81,
+            'bestpractices': 75,
+            'performance': 80,
+            'pwa': 54,
+            'seo': 77
         },
         'summary': 'https://www.webpagetest.org/results.php?test=180308_YK_dcbdf326749ba4db9c418b4407d361a8',
         'trend': 'careers_mozilla_org_en-US_.trend.json',
