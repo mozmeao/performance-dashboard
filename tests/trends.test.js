@@ -67,6 +67,33 @@ test('add() should append new trend data', () => {
     ]);
 });
 
+test('add() return empty array is no existing data', () => {
+    let current = {
+        'id': '180308_JD_dcbdf326749ba4db9c418b4407d361a6',
+        'date': '2018-03-03T11:34',
+        'scores': {
+            'performance': 85, 'pwa': 55, 'accessibility': 84, 'bestpractices': 88, 'seo': 90
+        },
+        'metrics': {
+            'documentComplete': 7759, 'fullyLoaded': 8097, 'requests': 49
+        }
+    };
+
+    let result = trends.add(null, current);
+    expect(result).toEqual([
+        {
+            'id': '180308_JD_dcbdf326749ba4db9c418b4407d361a6',
+            'date': '2018-03-03T11:34',
+            'scores': {
+                'performance': 85, 'pwa': 55, 'accessibility': 84, 'bestpractices': 88, 'seo': 90
+            },
+            'metrics': {
+                'documentComplete': 7759, 'fullyLoaded': 8097, 'requests': 49
+            }
+        }
+    ]);
+});
+
 test('trim', () => {
     let limit = 4;
     let result1 = trends.trim([1, 2, 3, 4], limit);
