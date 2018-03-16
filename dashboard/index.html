@@ -2,27 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>MozMEAO Web Performance Dashboard</title>
+  <title>Web Performance Dashboard</title>
   <meta name="description" content="" />
   <meta name="author" content="" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex, nofollow" />
   <link rel="stylesheet" type="text/css" href="css/index.css">
+  <link rel="stylesheet" type="text/css" href="css/lib/dialog-polyfill.css">
+  <link rel="stylesheet" type="text/css" href="css/lib/metricsgraphics.css">
   <link rel="shortcut icon" href="images/favicon.ico">
 </head>
 <body>
   <main>
     <header>
-      <h1>MozMEAO Web Performance Dashboard</h1>
+      <h1>Web Performance Dashboard</h1>
     </header>
     <nav role="navigation"></nav>
     <div class="dashboard"></div>
     <footer>
-      <p><small>Powered by <a href="https://www.webpagetest.org/">WebPageTest</a> & <a href="https://developers.google.com/web/tools/lighthouse/">Lighthouse</a>.</small></p>
+      <p><small>Powered by <a href="https://www.webpagetest.org/">WebPageTest</a> & <a href="https://developers.google.com/web/tools/lighthouse/">Lighthouse</a>. Source code on <a href="https://github.com/mozmeao/performance-dashboard">GitHub</a>.</small></p>
     </footer>
   </main>
 
-  <script src="js/utils.js"></script>
+  <dialog>
+    <div id="dialog-title"></div>
+    <div class="dialog-content">
+      <div class="graph" id="performance-graph"></div>
+      <div class="graph" id="load-graph"></div>
+      <div class="graph" id="bytes-in-graph"></div>
+      <div class="graph" id="requests-graph"></div>
+    </div>
+    <form method="dialog">
+      <input id="close-dialog" type="submit" value="Close" />
+    </form>
+  </dialog>
+
+  <script src="js/lib/dialog-polyfill.js"></script>
+  <script src="js/lib/jquery-3.3.1.min.js"></script>
+  <script src="js/lib/d3.min.js"></script>
+  <script src="js/lib/metricsgraphics.min.js"></script>
+  <script src="js/views.js"></script>
   <script src="js/index.js"></script>
 </body>
 </html>

@@ -7,6 +7,12 @@
 
     var utils = {
 
+        getDisplayName: function(fileName) {
+            let prefix = fileName.substr(0, fileName.lastIndexOf('.')); // strip .json file extension if exists.
+            let name = prefix ? prefix : fileName;
+            return name.replace(/_/g, '.');
+        },
+
         /**
          * Converts bytes to a more human readable value.
          * @param {Number} bytes.

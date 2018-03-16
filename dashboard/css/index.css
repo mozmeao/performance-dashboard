@@ -6,7 +6,13 @@
  * Common elements */
 
 body {
+    background: #fafafa;
+    color: #757575;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #000;
 }
 
 main {
@@ -21,8 +27,8 @@ header {
 }
 
 header p {
-    max-width: 30em;
     margin: 20px auto;
+    max-width: 30em;
 }
 
 p {
@@ -31,7 +37,7 @@ p {
 
 a:link,
 a:visited {
-    color: #0a84ff;
+    color: #4285f4;
     text-decoration: none;
 }
 
@@ -56,44 +62,55 @@ form label {
 
 form select {
     font-family: inherit;
-    font-size: 1rem;
+    font-size: .9rem;
 }
 
 /* -------------------------------------------------------------------
  * Dashboard tables */
 
 .dashboard {
+    box-shadow: 2px 3px 6px 0 rgba(0, 0, 0, .1);
+    margin: 40px auto 20px;
     max-width: 1400px;
-    margin: 20px auto;
 }
 
 table {
-    margin: 0 auto 40px;
-    border-spacing: 0;
+    background: #fff;
     border-collapse: collapse;
+    border-spacing: 0;
+    font-size: .9rem;
+    margin: 0 auto 40px;
     width: 100%;
 }
 
 table caption {
+    background: #455a64;
+    color: #fff;
+    padding: 10px;
     text-align: left;
-    margin-bottom: 10px;
 }
 
 table caption h2 {
+    color: #fff;
     float: left;
     margin: 0;
 }
 
 table caption .meta {
-    margin-top: .5em;
     float: right;
     font-size: 14px;
+    margin-top: .3em;
+}
+
+table th {
+    color: #000;
+    text-align: left;
 }
 
 table th,
 table td {
+    border: 1px solid #eee;
     padding: 10px;
-    border: 1px solid #515151;
 }
 
 /* -------------------------------------------------------------------
@@ -129,6 +146,59 @@ meter::-webkit-meter-suboptimum-value {
 
 meter::-webkit-meter-even-less-good-value {
     background: #ff0000;
+}
+
+/* -------------------------------------------------------------------
+ * Dialog & graph styles */
+
+dialog {
+    top: 60px;
+}
+
+#dialog-title {
+    background: #455a64;
+    margin-bottom: 40px;
+    padding: 10px;
+    text-align: center;
+}
+
+#dialog-title h3 {
+    color: #fff;
+    margin: 0;
+}
+
+dialog .graph {
+    margin: 20px 0;
+}
+
+@media (min-width: 1500px) {
+    dialog .dialog-content {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+    }
+}
+
+/* -------------------------------------------------------------------
+ * Button styles */
+
+button,
+input[type="submit"] {
+    background: #eee;
+    border-radius: 3px;
+    border: none;
+    color: #757575;
+    font-family: inherit;
+    font-size: .8rem;
+    padding: .4em 1em;
+}
+
+button:hover,
+button:focus,
+input[type="submit"]:hover,
+input[type="submit"]:focus {
+    background: #ddd;
 }
 
 /* -------------------------------------------------------------------

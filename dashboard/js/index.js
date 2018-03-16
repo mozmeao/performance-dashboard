@@ -2,8 +2,15 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-(function(utils) {
+(function(utils, views) {
     'use strict';
+
+    let dialog = document.querySelector('dialog');
+    let dialogTitle = document.getElementById('dialog-title');
+    let performanceGraph = document.getElementById('performance-graph');
+    let loadGraph = document.getElementById('load-graph');
+    let bytesInGraph = document.getElementById('bytes-in-graph');
+    let requestsGraph = document.getElementById('requests-graph');
 
     async function fetchSummary(fileName) {
         try {
@@ -15,89 +22,8 @@
         }
     }
 
-    function getDisplayName(fileName) {
-        let prefix = fileName.substr(0, fileName.lastIndexOf('.')); // strip .json file extension if exists.
-        let name = prefix ? prefix : fileName;
-        return name.replace(/_/g, '.');
-    }
-
-    function renderSelectMenu(sites) {
-        return `
-            <form>
-                <label for="website-select">Select a website:</label>
-                <select id="website-select">
-                    <option selected disabled>-- Choose --</option>
-                    ${sites}
-                </select>
-            </form>
-        `;
-    }
-
-    function renderSelectOption(name, value) {
-        return `<option value="${value}">${name}</option>`;
-    }
-
-    function renderMetaData(date) {
-        return `<div class="meta"><strong>Location:</strong> ec2-us-west-2, <strong>Browser:</strong> Chrome, <strong>Connection:</strong> 3G, <strong>Date:</strong> <time>${date}</time></div>`;
-    }
-
-    function renderReportTable(name, meta, rows) {
-        return `
-            <table>
-                <caption>
-                    <h2>${name}</h2>
-                    ${meta}
-                </caption>
-                <thead>
-                <tr>
-                    <th scope="col">Page</th>
-                    <th scope="col">Document Complete</th>
-                    <th scope="col">Fully Loaded</th>
-                    <th scope="col">Bytes In</th>
-                    <th scope="col">Requests</th>
-                    <th scope="col">Performance</th>
-                    <th scope="col">PWA</th>
-                    <th scope="col">Accessibility</th>
-                    <th scope="col">Best Practices</th>
-                    <th scope="col">SEO</th>
-                    <th scope="col">WebPageTest</th>
-                    <th scope="col">Lighthouse</th>
-                    <th scope="col">Trend</th>
-                </tr>
-                </thead>
-                <tbody>${rows}</tbody>
-            </table>
-        `;
-    }
-
-    function renderReportTableRow(name, page, scores) {
-        let docComplete = utils.formatTime(page.metrics.documentComplete);
-        let fullyLoaded = utils.formatTime(page.metrics.fullyLoaded);
-        let pageWeight = utils.formatBytes(page.metrics.bytesIn);
-
-        return `
-            <tr>
-                <td><a href="${page.url}">${page.url}</a></td>
-                <td>${docComplete}</td>
-                <td>${fullyLoaded}</td>
-                <td>${pageWeight}</td>
-                <td>${page.metrics.requests}</td>
-                ${scores}
-                <td><a href="${page.summary}">View report</a></td>
-                <td><a href="${page.lighthouse}">View report</a></td>
-                <td><a href="data/trends/${name}/${page.trend}">View</a></td>
-            </tr>
-        `;
-    }
-
-    function renderScore(name, score) {
-        return `
-            <td><meter value="${score}" min="0" max="100" low="50" high="80" optimum="100">${score}</meter> ${score}</td>
-        `;
-    }
-
-    function displayNavigation(menu) {
-        document.querySelector('nav').insertAdjacentHTML('beforeend', menu);
+    function bindEvents() {
+        document.querySelector('.dashboard').addEventListener('click', handleDashboardClick);
 
         document.getElementById('website-select').addEventListener('change', (e) => {
             e.preventDefault();
@@ -105,39 +31,143 @@
         });
     }
 
-    function displayReport(table) {
-        document.querySelector('.dashboard').innerHTML = table;
+    function handleDashboardClick(e) {
+        if (e.target.className === 'button-trend') {
+            showDialog(e.target.dataset);
+        }
+    }
+
+    function renderPerformanceGraphs(dataset) {
+        dialogTitle.innerHTML = `<h3>${dataset.url}</h3>`;
+
+        window.d3.json(dataset.src, function(data) {
+            let perfData = [[], [], [], [], []];
+            let loadData = [[], []];
+            let requestData = [];
+            let bytesInData = [];
+            let d = {
+                height: 200,
+                left: 120,
+                right: 120,
+                width: 700
+            };
+
+            data = window.MG.convert.date(data, 'date', '%Y-%m-%dT%H:%M');
+
+            data.forEach(entry => {
+                let date = entry.date;
+
+                perfData[0].push({
+                    'date': date,
+                    'value': parseInt(entry.scores.performance)
+                });
+                perfData[1].push({
+                    'date': date,
+                    'value': parseInt(entry.scores.pwa)
+                });
+                perfData[2].push({
+                    'date': date,
+                    'value': parseInt(entry.scores.accessibility)
+                });
+                perfData[3].push({
+                    'date': date,
+                    'value': parseInt(entry.scores.bestpractices)
+                });
+                perfData[4].push({
+                    'date': date,
+                    'value': parseInt(entry.scores.seo)
+                });
+
+                loadData[0].push({
+                    'date': date,
+                    'value': parseInt(entry.metrics.documentComplete)
+                });
+
+                loadData[1].push({
+                    'date': date,
+                    'value': parseInt(entry.metrics.fullyLoaded)
+                });
+
+                bytesInData.push({
+                    'date': date,
+                    'value': parseInt(entry.metrics.bytesIn)
+                });
+
+                requestData.push({
+                    'date': date,
+                    'value': parseInt(entry.metrics.requests)
+                });
+            });
+
+            window.MG.data_graphic({
+                area: false,
+                title: 'Scores',
+                data: perfData,
+                width: d.width,
+                height: d.height,
+                left: d.left,
+                right: d.right,
+                y_label: '%',
+                target: performanceGraph,
+                legend: ['Performance', 'PWA', 'Accessibility', 'Best Practices', 'SEO']
+            });
+
+            window.MG.data_graphic({
+                area: false,
+                title: 'Load times',
+                data: loadData,
+                width: d.width,
+                height: d.height,
+                left: d.left,
+                right: d.right,
+                target: loadGraph,
+                y_label: 'MS',
+                legend: ['Doc Complete', 'Fully Loaded']
+            });
+
+            window.MG.data_graphic({
+                area: false,
+                title: 'Bytes In',
+                data: bytesInData,
+                width: d.width,
+                height: d.height,
+                left: d.left,
+                right: d.right,
+                target: bytesInGraph
+            });
+
+            window.MG.data_graphic({
+                area: false,
+                title: 'Requests',
+                data: requestData,
+                width: d.width,
+                height: d.height,
+                left: d.left,
+                right: d.right,
+                y_label: 'Total',
+                target: requestsGraph
+            });
+        });
+    }
+
+    function showDialog(dataset) {
+        renderPerformanceGraphs(dataset);
+        window.dialogPolyfill.registerDialog(dialog);
+        dialog.showModal();
     }
 
     function displayWebsiteReport(report) {
         fetchSummary(report).then(site => {
-            let name = getDisplayName(site.name);
-            let rows = site.pages.map(page => {
-                let scores = '';
-
-                Object.entries(page.scores).forEach(([key, value]) => {
-                    scores += renderScore(key, value);
-                });
-
-                return renderReportTableRow(site.name, page, scores);
-            }).join('');
-
-            let meta = renderMetaData(site.date);
-            let table = renderReportTable(name, meta, rows);
-
-            displayReport(table);
+            let table = views.renderTable(site);
+            document.querySelector('.dashboard').innerHTML = table;
         });
     }
 
     fetchSummary('index.json').then(data => {
-        let options = data.sites.map(site => {
-            let name = getDisplayName(site);
-            return renderSelectOption(name, site);
-        }).join('');
+        let menu = views.renderNavigationMenu(data);
+        document.querySelector('nav').insertAdjacentHTML('beforeend', menu);
 
-        let menu = renderSelectMenu(options);
-
-        displayNavigation(menu);
+        bindEvents();
     });
 
-})(window.utils);
+})(window.utils, window.views);
