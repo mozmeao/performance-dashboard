@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-(function() {
+(function(utils) {
     'use strict';
 
     async function fetchSummary(fileName) {
@@ -71,12 +71,16 @@
     }
 
     function renderReportTableRow(name, page, scores) {
+        let docComplete = utils.formatTime(page.metrics.documentComplete);
+        let fullyLoaded = utils.formatTime(page.metrics.fullyLoaded);
+        let pageWeight = utils.formatBytes(page.metrics.bytesIn);
+
         return `
             <tr>
                 <td><a href="${page.url}">${page.url}</a></td>
-                <td>${page.metrics.documentComplete}ms</td>
-                <td>${page.metrics.fullyLoaded}ms</td>
-                <td>${page.metrics.bytesIn}</td>
+                <td>${docComplete}</td>
+                <td>${fullyLoaded}</td>
+                <td>${pageWeight}</td>
                 <td>${page.metrics.requests}</td>
                 ${scores}
                 <td><a href="${page.summary}">View report</a></td>
@@ -136,4 +140,4 @@
         displayNavigation(menu);
     });
 
-})();
+})(window.utils);
