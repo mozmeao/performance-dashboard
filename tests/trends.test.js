@@ -27,7 +27,7 @@ test('add() should append new trend data', () => {
                 'performance': 85, 'pwa': 55, 'accessibility': 84, 'bestpractices': 88, 'seo': 90
             },
             'metrics': {
-                'documentComplete': 7759, 'fullyLoaded': 8097, 'requests': 49
+                'bytesIn': 1413620, 'documentComplete': 7759, 'fullyLoaded': 8097, 'requests': 49
             }
         }
     ];
@@ -38,7 +38,7 @@ test('add() should append new trend data', () => {
             'performance': 85, 'pwa': 55, 'accessibility': 84, 'bestpractices': 88, 'seo': 90
         },
         'metrics': {
-            'documentComplete': 7759, 'fullyLoaded': 8097, 'requests': 49
+            'bytesIn': 1213620, 'documentComplete': 7759, 'fullyLoaded': 8097, 'requests': 49
         }
     };
 
@@ -51,7 +51,7 @@ test('add() should append new trend data', () => {
                 'performance': 85, 'pwa': 55, 'accessibility': 84, 'bestpractices': 88, 'seo': 90
             },
             'metrics': {
-                'documentComplete': 7759, 'fullyLoaded': 8097, 'requests': 49
+                'bytesIn': 1413620, 'documentComplete': 7759, 'fullyLoaded': 8097, 'requests': 49
             }
         },
         {
@@ -61,7 +61,7 @@ test('add() should append new trend data', () => {
                 'performance': 85, 'pwa': 55, 'accessibility': 84, 'bestpractices': 88, 'seo': 90
             },
             'metrics': {
-                'documentComplete': 7759, 'fullyLoaded': 8097, 'requests': 49
+                'bytesIn': 1213620, 'documentComplete': 7759, 'fullyLoaded': 8097, 'requests': 49
             }
         }
     ]);
@@ -75,7 +75,7 @@ test('add() return empty array is no existing data', () => {
             'performance': 85, 'pwa': 55, 'accessibility': 84, 'bestpractices': 88, 'seo': 90
         },
         'metrics': {
-            'documentComplete': 7759, 'fullyLoaded': 8097, 'requests': 49
+            'bytesIn': 1213620, 'documentComplete': 7759, 'fullyLoaded': 8097, 'requests': 49
         }
     };
 
@@ -88,7 +88,7 @@ test('add() return empty array is no existing data', () => {
                 'performance': 85, 'pwa': 55, 'accessibility': 84, 'bestpractices': 88, 'seo': 90
             },
             'metrics': {
-                'documentComplete': 7759, 'fullyLoaded': 8097, 'requests': 49
+                'bytesIn': 1213620, 'documentComplete': 7759, 'fullyLoaded': 8097, 'requests': 49
             }
         }
     ]);

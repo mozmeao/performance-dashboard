@@ -23,6 +23,7 @@ test('format', () => {
         'id': '180308_YK_dcbdf326749ba4db9c418b4407d361a8',
         'lighthouse': 'https://www.webpagetest.org/lighthouse.php?test=180308_YK_dcbdf326749ba4db9c418b4407d361a8',
         'metrics': {
+            'bytesIn': 1213620,
             'documentComplete': 7847,
             'fullyLoaded': 8184,
             'requests': 49

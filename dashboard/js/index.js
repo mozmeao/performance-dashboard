@@ -53,6 +53,7 @@
                     <th scope="col">Page</th>
                     <th scope="col">Document Complete</th>
                     <th scope="col">Fully Loaded</th>
+                    <th scope="col">Bytes In</th>
                     <th scope="col">Requests</th>
                     <th scope="col">Performance</th>
                     <th scope="col">PWA</th>
@@ -75,6 +76,7 @@
                 <td><a href="${page.url}">${page.url}</a></td>
                 <td>${page.metrics.documentComplete}ms</td>
                 <td>${page.metrics.fullyLoaded}ms</td>
+                <td>${page.metrics.bytesIn}</td>
                 <td>${page.metrics.requests}</td>
                 ${scores}
                 <td><a href="${page.summary}">View report</a></td>
