@@ -1,5 +1,7 @@
 {
     "name": "irlpodcast_org",
+    "location": "ec2-us-west-2:Chrome",
+    "connection": "3G",
     "pages": [
         "https://irlpodcast.org/"
     ]

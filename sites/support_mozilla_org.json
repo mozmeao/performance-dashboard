@@ -1,5 +1,7 @@
 {
     "name": "support_mozilla_org",
+    "location": "ec2-us-west-2:Chrome",
+    "connection": "3G",
     "pages": [
         "https://support.mozilla.org/en-US/"
     ]
