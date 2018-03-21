@@ -1,6 +1,6 @@
 {
     "name": "careers_mozilla_org",
-    "location": "ec2-us-west-2:Chrome",
+    "location": "ec2-us-west-1:Chrome",
     "connection": "3G",
     "pages": [
         "https://careers.mozilla.org/en-US/"
