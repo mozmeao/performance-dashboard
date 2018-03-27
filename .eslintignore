@@ -1,1 +1,4 @@
 dashboard/js/lib
+
+# Netlify build
+app/dashboard/js/lib
