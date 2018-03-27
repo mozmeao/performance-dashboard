@@ -1,4 +1,4 @@
-dashboard/js/lib
+dashboard/js/lib/*
 
 # Netlify build
-app/dashboard/js/lib
+app/dashboard/js/lib/*
