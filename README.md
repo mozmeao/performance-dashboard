@@ -8,7 +8,7 @@ Powered by [WebPageTest](https://www.webpagetest.org/) & Google [Lighthouse](htt
 
 ## Install
 
-First make sure you have [Node](https://nodejs.org/), [Yarn](https://yarnpkg.com/) and [Chrome](https://www.google.com/chrome/) installed. Then run:
+First make sure you have [Node](https://nodejs.org/) and [Yarn](https://yarnpkg.com/) installed. Then run:
 
 ```
 yarn
