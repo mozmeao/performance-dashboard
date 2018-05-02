@@ -207,3 +207,11 @@ input[type="submit"]:focus {
 footer {
     text-align: center;
 }
+
+/* -------------------------------------------------------------------
+ * Graph styles */
+
+.graph path,
+.graph rect {
+    cursor: pointer;
+}

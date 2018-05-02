@@ -59,42 +59,51 @@
 
                 perfData[0].push({
                     'date': date,
+                    'id': entry.id,
                     'value': parseInt(entry.scores.performance)
                 });
                 perfData[1].push({
                     'date': date,
+                    'id': entry.id,
                     'value': parseInt(entry.scores.pwa)
                 });
                 perfData[2].push({
                     'date': date,
+                    'id': entry.id,
                     'value': parseInt(entry.scores.accessibility)
                 });
                 perfData[3].push({
                     'date': date,
+                    'id': entry.id,
                     'value': parseInt(entry.scores.bestpractices)
                 });
                 perfData[4].push({
                     'date': date,
+                    'id': entry.id,
                     'value': parseInt(entry.scores.seo)
                 });
 
                 loadData[0].push({
                     'date': date,
+                    'id': entry.id,
                     'value': parseInt(entry.metrics.documentComplete)
                 });
 
                 loadData[1].push({
                     'date': date,
+                    'id': entry.id,
                     'value': parseInt(entry.metrics.fullyLoaded)
                 });
 
                 bytesInData.push({
                     'date': date,
+                    'id': entry.id,
                     'value': parseInt(entry.metrics.bytesIn)
                 });
 
                 requestData.push({
                     'date': date,
+                    'id': entry.id,
                     'value': parseInt(entry.metrics.requests)
                 });
             });
@@ -146,6 +155,38 @@
                 right: d.right,
                 y_label: 'Total',
                 target: requestsGraph
+            });
+
+            window.d3.selectAll('#performance-graph path').on('click', function(data) {
+                const id = data.id;
+
+                if (id) {
+                    window.location.href = `https://www.webpagetest.org/lighthouse.php?test=${id}`;
+                }
+            });
+
+            window.d3.selectAll('#load-graph path').on('click', function(data) {
+                const id = data.id;
+
+                if (id) {
+                    window.location.href = `https://www.webpagetest.org/results.php??test=${id}`;
+                }
+            });
+
+            window.d3.selectAll('#bytes-in-graph rect').on('click', function(data) {
+                const id = data.id;
+
+                if (id) {
+                    window.location.href = `https://www.webpagetest.org/results.php?test=${id}`;
+                }
+            });
+
+            window.d3.selectAll('#requests-graph rect').on('click', function(data) {
+                const id = data.id;
+
+                if (id) {
+                    window.location.href = `https://www.webpagetest.org/results.php?test=${id}`;
+                }
             });
         });
     }
