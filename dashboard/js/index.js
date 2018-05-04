@@ -169,7 +169,7 @@
                 const id = data.id;
 
                 if (id) {
-                    window.location.href = `https://www.webpagetest.org/results.php??test=${id}`;
+                    window.location.href = `https://www.webpagetest.org/results.php?test=${id}`;
                 }
             });
 
