@@ -1,5 +1,5 @@
 {
-    "name": "www_mozilla_org_tokyo",
+    "name": "www_mozilla_org_tokyo_native",
     "location": "ec2-ap-northeast-1:Chrome",
     "connection": "Native",
     "pages": [
