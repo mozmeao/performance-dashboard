@@ -1,7 +1,7 @@
 {
-    "name": "www_mozilla_org_3G",
-    "location": "ec2-us-west-1:Chrome",
-    "connection": "3G",
+    "name": "www_mozilla_org_frankfurt_native",
+    "location": "ec2-eu-central-1:Chrome",
+    "connection": "Native",
     "pages": [
         "https://www.mozilla.org/en-US/",
         "https://www.mozilla.org/en-US/firefox/",

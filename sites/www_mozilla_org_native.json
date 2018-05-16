@@ -1,6 +1,6 @@
 {
-    "name": "www_mozilla_org_frankfurt",
-    "location": "ec2-eu-central-1:Chrome",
+    "name": "www_mozilla_org_native",
+    "location": "ec2-us-west-1:Chrome",
     "connection": "Native",
     "pages": [
         "https://www.mozilla.org/en-US/",
