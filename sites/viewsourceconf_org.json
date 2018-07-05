@@ -1,7 +1,7 @@
 {
     "name": "viewsourceconf_org",
     "location": "ec2-us-west-1:Chrome",
-    "connection": "3G",
+    "connection": "3GFast",
     "pages": [
         "https://viewsourceconf.org/"
     ]
