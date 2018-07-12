@@ -64,7 +64,11 @@
                     <td>${fullyLoaded}</td>
                     <td>${pageWeight}</td>
                     <td>${page.metrics.requests}</td>
-                    ${scores}
+                    <td>${scores.performance}</td>
+                    <td>${scores.pwa}</td>
+                    <td>${scores.accessibility}</td>
+                    <td>${scores.bestpractices}</td>
+                    <td>${scores.seo}</td>
                     <td><a href="${page.summary}">View report</a></td>
                     <td><a href="${page.lighthouse}">View report</a></td>
                     <td><button class="button-trend" type="button" data-src="data/trends/${name}/${page.trend}" data-url="${page.url}">View</button></td>
@@ -81,11 +85,10 @@
         renderTable: function(site) {
             let name = views.getDisplayName(site.name);
             let rows = site.pages.map(page => {
-                let scores = '';
+                let scores = {};
 
                 Object.keys(page.scores).forEach((key) => {
-                    let score = views.renderScore(page.scores[key]);
-                    scores += `<td>${score}</td>`;
+                    scores[key] = views.renderScore(page.scores[key]);
                 });
 
                 return views.renderTableRow(site.name, page, scores);
