@@ -57,6 +57,11 @@
             data.forEach(entry => {
                 let date = entry.date;
 
+                // if for some reason WPT returned no data, skip the iteration.
+                if (Object.keys(entry.metrics).length === 0) {
+                    return;
+                }
+
                 perfData[0].push({
                     'date': date,
                     'id': entry.id,
