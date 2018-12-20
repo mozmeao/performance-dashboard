@@ -28,6 +28,7 @@ test('format', () => {
             'fullyLoaded': 9976,
             'requests': 53
         },
+        'runError': null,
         'scores': {
             'accessibility': 79,
             'bestpractices': 93,
