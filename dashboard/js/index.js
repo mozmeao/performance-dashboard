@@ -57,6 +57,11 @@
             data.forEach(entry => {
                 let date = entry.date;
 
+                // if there was an error fetching the test, skip the iteration.
+                if (entry.runError && entry.runError.statusCode) {
+                    return;
+                }
+
                 // if for some reason WPT returned no data, skip the iteration.
                 if (Object.keys(entry.metrics).length === 0) {
                     return;
