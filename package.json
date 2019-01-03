@@ -28,7 +28,7 @@
   "devDependencies": {
     "eslint": "^4.16.0",
     "jest": "^22.2.1",
-    "serve": "^6.4.9"
+    "serve": "10.1.1"
   },
   "repository": "https://github.com/mozmeao/performance-dashboard.git",
   "private": true
