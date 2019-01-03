@@ -76,6 +76,26 @@
             `;
         },
 
+        renderTableRowError: function(name, page) {
+            return `
+                <tr>
+                    <td><a href="${page.url}">${page.url}</a></td>
+                    <td><span class="error">Error code: ${page.runError.statusCode}, ${page.runError.statusText}</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><button class="button-trend" type="button" data-src="data/trends/${name}/${page.trend}" data-url="${page.url}">View</button></td>
+                </tr>
+            `;
+        },
+
         renderScore: function(score) {
             return `
                 <meter value="${score}" min="0" max="100" low="50" high="80" optimum="100">${score}</meter> ${score}
@@ -86,6 +106,10 @@
             let name = views.getDisplayName(site.name);
             let rows = site.pages.map(page => {
                 let scores = {};
+
+                if (page.runError) {
+                    return views.renderTableRowError(site.name, page);
+                }
 
                 Object.keys(page.scores).forEach((key) => {
                     scores[key] = views.renderScore(page.scores[key]);
