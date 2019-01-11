@@ -14,8 +14,8 @@
 </head>
 <body>
   <main>
-    <header>
-      <h1>Web Performance Dashboard</h1>
+    <header class="main-heading">
+      <h1>Mozilla Website Performance Dashboard</h1>
     </header>
     <nav role="navigation"></nav>
     <div class="dashboard"></div>
@@ -24,7 +24,7 @@
     </footer>
   </main>
 
-  <dialog>
+  <dialog class="graph-dialog">
     <div id="dialog-title"></div>
     <div class="dialog-content">
       <div class="graph" id="performance-graph"></div>
@@ -32,7 +32,7 @@
       <div class="graph" id="bytes-in-graph"></div>
       <div class="graph" id="requests-graph"></div>
     </div>
-    <form method="dialog">
+    <form id="dialog-form" method="dialog">
       <input id="close-dialog" type="submit" value="Close" />
     </form>
   </dialog>

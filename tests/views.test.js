@@ -36,19 +36,48 @@ test('views.formatTime', () => {
 });
 
 test('views.renderNavigationMenu', () => {
-    let data = JSON.parse(fs.readFileSync('./tests/data/summary/index.json'));
-    let result = views.renderNavigationMenu(data);
+    const data = JSON.parse(fs.readFileSync('./tests/data/summary/index.json'));
+    const result = views.renderNavigationMenu(data);
     expect(result).toEqual(expect.stringContaining('<option value=\"careers_mozilla_org.json\">careers.mozilla.org</option>'));
     expect(result).toEqual(expect.stringContaining('<option value=\"www_mozilla_org.json\">www.mozilla.org</option>'));
 });
 
-test('views.renderTable', () => {
-    let data = JSON.parse(fs.readFileSync('./tests/data/summary/test_summary_a.json'));
-    let result = views.renderTable(data);
-    expect(result).toEqual(expect.stringContaining('<table>'));
+test('views.renderHeading', () => {
+    const data = JSON.parse(fs.readFileSync('./tests/data/summary/test_summary_a.json'));
+    const result = views.renderHeading(data);
     expect(result).toEqual(expect.stringContaining('<h2>www.mozilla.org</h2>'));
-    expect(result).toEqual(expect.stringContaining('<div class=\"meta\">Location: ec2-us-west-1:Chrome, Connection: 3G, Date: <time>2018-03-26T11:20</time></div>'));
-    expect(result).toEqual(expect.stringContaining('<td><a href=\"https://www.mozilla.org/en-US/\">https://www.mozilla.org/en-US/</a></td>'));
-    expect(result).toEqual(expect.stringContaining('<td><a href=\"https://www.mozilla.org/en-US/firefox/\">https://www.mozilla.org/en-US/firefox/</a></td>'));
-    expect(result).toEqual(expect.stringContaining('<meter value=\"79\" min=\"0\" max=\"100\" low=\"50\" high=\"80\" optimum=\"100\">79</meter> 79'));
+    expect(result).toEqual(expect.stringContaining('<li><strong>Location:</strong> ec2-us-west-1:Chrome</li>'));
+    expect(result).toEqual(expect.stringContaining('<li><strong>Connection:</strong> 3G</li>'));
+    expect(result).toEqual(expect.stringContaining('<li><strong>Date:</strong> <time>2018-03-26T11:20</time></li>'));
 });
+
+test('views.renderCloudinarySummary', () => {
+    const data = JSON.parse(fs.readFileSync('./tests/data/summary/test_summary_a.json'));
+    const result = views.renderCloudinarySummary(data);
+    expect(result).toEqual(expect.stringContaining('<td><a href=\"https://www.mozilla.org/en-US/\">https://www.mozilla.org/en-US/</a></td>'));
+    expect(result).toEqual(expect.stringContaining('<td><a href=\"https://webspeedtest.cloudinary.com/results/180326_ZW_7863355d2b6b3fd7b0919781557544a0\">View report</a></td>'));
+});
+
+test('views.renderLighthouseScore', () => {
+    const result = views.renderLighthouseScore(95);
+    expect(result).toEqual(expect.stringContaining('<meter value=\"95\" min=\"0\" max=\"100\" low=\"50\" high=\"80\" optimum=\"100\">95</meter> 95'));
+});
+
+
+test('views.renderLighthouseSummary', () => {
+    const data = JSON.parse(fs.readFileSync('./tests/data/summary/test_summary_a.json'));
+    const result = views.renderLighthouseSummary(data);
+    expect(result).toEqual(expect.stringContaining('<td><a href=\"https://www.mozilla.org/en-US/\">https://www.mozilla.org/en-US/</a></td>'));
+    expect(result).toEqual(expect.stringContaining('<td><a href=\"https://www.webpagetest.org/lighthouse.php?test=180326_ZW_7863355d2b6b3fd7b0919781557544a0\">View report</a></td>'));
+    expect(result).toEqual(expect.stringContaining('<td><button class=\"button-trend\" type=\"button\" data-src=\"data/trends/www_mozilla_org/www_mozilla_org_en-US_.trend.json\" data-url=\"https://www.mozilla.org/en-US/\" data-origin=\"lighthouse\">View</button></td>'));
+});
+
+test('views.renderWebPageTestSummary', () => {
+    const data = JSON.parse(fs.readFileSync('./tests/data/summary/test_summary_a.json'));
+    const result = views.renderWebPageTestSummary(data);
+    expect(result).toEqual(expect.stringContaining('<td><a href=\"https://www.mozilla.org/en-US/\">https://www.mozilla.org/en-US/</a></td>'));
+    expect(result).toEqual(expect.stringContaining('<td><a href=\"https://www.webpagetest.org/results.php?test=180326_ZW_7863355d2b6b3fd7b0919781557544a0\">View report</a></td>'));
+    expect(result).toEqual(expect.stringContaining('<td><button class=\"button-trend\" type=\"button\" data-src=\"data/trends/www_mozilla_org/www_mozilla_org_en-US_.trend.json\" data-url=\"https://www.mozilla.org/en-US/\" data-origin=\"wpt\">View</button></td>'));
+});
+
+

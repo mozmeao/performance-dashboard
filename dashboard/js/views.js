@@ -5,11 +5,11 @@
 (function() {
     'use strict';
 
-    var views = {
+    const views = {
 
         getDisplayName: function(fileName) {
-            let prefix = fileName.substr(0, fileName.lastIndexOf('.')); // strip .json file extension if exists.
-            let name = prefix ? prefix : fileName;
+            const prefix = fileName.substr(0, fileName.lastIndexOf('.')); // strip .json file extension if exists.
+            const name = prefix ? prefix : fileName;
             return name.replace(/_/g, '.');
         },
 
@@ -24,10 +24,10 @@
                 return '0b';
             }
 
-            let k = 1024;
-            let dm = decimals || 2;
-            let sizes = ['b', 'kb', 'mb', 'gb', 'tb', 'pb', 'eb', 'zb', 'yb'];
-            let i = Math.floor(Math.log(bytes) / Math.log(k));
+            const k = 1024;
+            const dm = decimals || 2;
+            const sizes = ['b', 'kb', 'mb', 'gb', 'tb', 'pb', 'eb', 'zb', 'yb'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
             return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + sizes[i];
         },
 
@@ -41,9 +41,9 @@
                 return '0.0s';
             }
 
-            let milliseconds = ms % 1000;
-            let seconds = Math.floor((ms / 1000) % 60);
-            let minutes = Math.floor((ms / (60 * 1000)) % 60);
+            const milliseconds = ms % 1000;
+            const seconds = Math.floor((ms / 1000) % 60);
+            const minutes = Math.floor((ms / (60 * 1000)) % 60);
 
             if (minutes > 0) {
                 return `${minutes}:${seconds}.${milliseconds}s`;
@@ -52,10 +52,105 @@
             }
         },
 
-        renderTableRow: function(name, page, scores) {
-            let docComplete = views.formatTime(page.metrics.documentComplete);
-            let fullyLoaded = views.formatTime(page.metrics.fullyLoaded);
-            let pageWeight = views.formatBytes(page.metrics.bytesIn);
+        renderHeading: function(site) {
+            const name = views.getDisplayName(site.name);
+
+            return `
+            <header>
+                <h2>${name}</h2>
+                <ul class="meta">
+                    <li><strong>Location:</strong> ${site.location}</li>
+                    <li><strong>Connection:</strong> ${site.connection}</li>
+                    <li><strong>Date:</strong> <time>${site.date}</time></li>
+                </ul>
+            </header>
+            `;
+        },
+
+        renderCloudinarySummary: function(site) {
+            const rows = site.pages.map(page => views.renderCloudinaryData(page)).join('');
+
+            return `
+                <table>
+                    <caption>
+                        <h2>Cloudinary</h2>
+                    </caption>
+                    <thead>
+                    <tr>
+                        <th scope="col">Page</th>
+                        <th scope="col">Image Weight Analysis</th>
+                    </tr>
+                    </thead>
+                    <tbody>${rows}</tbody>
+                </table>
+            `;
+        },
+
+        renderCloudinaryData: function(page) {
+            return `
+                <tr>
+                    <td><a href="${page.url}">${page.url}</a></td>
+                    <td><a href="https://webspeedtest.cloudinary.com/results/${page.id}">View report</a></td>
+                </tr>
+            `;
+        },
+
+        renderLighthouseScore: function(score) {
+            return `
+                <meter value="${score}" min="0" max="100" low="50" high="80" optimum="100">${score}</meter> ${score}
+            `;
+        },
+
+        renderLightHouseData: function(name, page) {
+            let scores = {};
+
+            Object.keys(page.scores).forEach((key) => {
+                scores[key] = views.renderLighthouseScore(page.scores[key]);
+            });
+
+            return `
+                <tr>
+                    <td><a href="${page.url}">${page.url}</a></td>
+                    <td>${scores.performance}</td>
+                    <td>${scores.pwa}</td>
+                    <td>${scores.accessibility}</td>
+                    <td>${scores.bestpractices}</td>
+                    <td>${scores.seo}</td>
+                    <td><a href="${page.lighthouse}">View report</a></td>
+                    <td><button class="button-trend" type="button" data-src="data/trends/${name}/${page.trend}" data-url="${page.url}" data-origin="lighthouse">View</button></td>
+                </tr>
+            `;
+        },
+
+        renderLighthouseSummary: function(site) {
+            const rows = site.pages.map(page => views.renderLightHouseData(site.name, page)).join('');
+
+            return `
+                <table>
+                    <caption>
+                        <h2>Lighthouse</h2>
+                    </caption>
+                    <thead>
+                    <tr>
+                        <th scope="col">Page</th>
+                        <th scope="col">Performance</th>
+                        <th scope="col">PWA</th>
+                        <th scope="col">Accessibility</th>
+                        <th scope="col">Best Practices</th>
+                        <th scope="col">SEO</th>
+                        <th scope="col">Report</th>
+                        <th scope="col">Trend</th>
+                    </tr>
+                    </thead>
+                    <tbody>${rows}</tbody>
+                </table>
+            `;
+        },
+
+        renderWebPageTestData: function(name, page) {
+            const docComplete = views.formatTime(page.metrics.documentComplete);
+            const fullyLoaded = views.formatTime(page.metrics.fullyLoaded);
+            const pageWeight = views.formatBytes(page.metrics.bytesIn);
 
             return `
                 <tr>
@@ -64,65 +159,19 @@
                     <td>${fullyLoaded}</td>
                     <td>${pageWeight}</td>
                     <td>${page.metrics.requests}</td>
-                    <td>${scores.performance}</td>
-                    <td>${scores.pwa}</td>
-                    <td>${scores.accessibility}</td>
-                    <td>${scores.bestpractices}</td>
-                    <td>${scores.seo}</td>
                     <td><a href="${page.summary}">View report</a></td>
-                    <td><a href="${page.lighthouse}">View report</a></td>
-                    <td><button class="button-trend" type="button" data-src="data/trends/${name}/${page.trend}" data-url="${page.url}">View</button></td>
+                    <td><button class="button-trend" type="button" data-src="data/trends/${name}/${page.trend}" data-url="${page.url}" data-origin="wpt">View</button></td>
                 </tr>
             `;
         },
 
-        renderTableRowError: function(name, page) {
-            return `
-                <tr>
-                    <td><a href="${page.url}">${page.url}</a></td>
-                    <td><span class="error">Error code: ${page.runError.statusCode}, ${page.runError.statusText}</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><button class="button-trend" type="button" data-src="data/trends/${name}/${page.trend}" data-url="${page.url}">View</button></td>
-                </tr>
-            `;
-        },
-
-        renderScore: function(score) {
-            return `
-                <meter value="${score}" min="0" max="100" low="50" high="80" optimum="100">${score}</meter> ${score}
-            `;
-        },
-
-        renderTable: function(site) {
-            let name = views.getDisplayName(site.name);
-            let rows = site.pages.map(page => {
-                let scores = {};
-
-                if (page.runError) {
-                    return views.renderTableRowError(site.name, page);
-                }
-
-                Object.keys(page.scores).forEach((key) => {
-                    scores[key] = views.renderScore(page.scores[key]);
-                });
-
-                return views.renderTableRow(site.name, page, scores);
-            }).join('');
+        renderWebPageTestSummary: function(site) {
+            const rows = site.pages.map(page => views.renderWebPageTestData(site.name, page)).join('');
 
             return `
                 <table>
                     <caption>
-                        <h2>${name}</h2>
-                        <div class="meta">Location: ${site.location}, Connection: ${site.connection}, Date: <time>${site.date}</time></div>
+                        <h2>Web Page Test</h2>
                     </caption>
                     <thead>
                     <tr>
@@ -131,13 +180,7 @@
                         <th scope="col">Fully Loaded</th>
                         <th scope="col">Page Weight</th>
                         <th scope="col">Requests</th>
-                        <th scope="col">Performance</th>
-                        <th scope="col">PWA</th>
-                        <th scope="col">Accessibility</th>
-                        <th scope="col">Best Practices</th>
-                        <th scope="col">SEO</th>
-                        <th scope="col">WebPageTest</th>
-                        <th scope="col">Lighthouse</th>
+                        <th scope="col">Report</th>
                         <th scope="col">Trend</th>
                     </tr>
                     </thead>
@@ -147,8 +190,8 @@
         },
 
         renderNavigationMenu: function(data) {
-            let options = data.sites.map(site => {
-                let name = views.getDisplayName(site);
+            const options = data.sites.map(site => {
+                const name = views.getDisplayName(site);
                 return `<option value="${site}">${name}</option>`;
             }).join('');
 

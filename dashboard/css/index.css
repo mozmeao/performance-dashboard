@@ -6,8 +6,8 @@
  * Common elements */
 
 body {
-    background: #fafafa;
-    color: #757575;
+    background: #fff;
+    color: #000;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -17,18 +17,6 @@ h1, h2, h3, h4, h5, h6 {
 
 main {
     margin: 60px 0;
-}
-
-/* -------------------------------------------------------------------
- * Dashboard header */
-
-header {
-    text-align: center;
-}
-
-header p {
-    margin: 20px auto;
-    max-width: 30em;
 }
 
 p {
@@ -45,6 +33,30 @@ a:hover,
 a:active,
 a:focus {
     text-decoration: underline;
+}
+
+/* -------------------------------------------------------------------
+ * Dashboard header */
+
+.main-heading {
+    text-align: center;
+}
+
+.main-heading p {
+    margin: 20px auto;
+    max-width: 30em;
+}
+
+.meta {
+    list-style-type: none;
+    margin: 0 0 20px;
+    padding: 0;
+}
+
+.meta li {
+    display: inline-block;
+    margin: 0 20px 0 0;
+    padding: 0;
 }
 
 /* -------------------------------------------------------------------
@@ -69,12 +81,12 @@ form select {
  * Dashboard tables */
 
 .dashboard {
-    box-shadow: 2px 3px 6px 0 rgba(0, 0, 0, .1);
     margin: 40px auto 20px;
     max-width: 1400px;
 }
 
 table {
+    box-shadow: 2px 3px 6px 0 rgba(0, 0, 0, .1);
     background: #fff;
     border-collapse: collapse;
     border-spacing: 0;
@@ -94,12 +106,6 @@ table caption h2 {
     color: #fff;
     float: left;
     margin: 0;
-}
-
-table caption .meta {
-    float: right;
-    font-size: 14px;
-    margin-top: .3em;
 }
 
 table th {
@@ -155,9 +161,11 @@ meter::-webkit-meter-even-less-good-value {
 /* -------------------------------------------------------------------
  * Dialog & graph styles */
 
-dialog {
-    top: 60px;
-}
+.graph-dialog {
+    position: fixed;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
 
 #dialog-title {
     background: #455a64;
@@ -171,17 +179,8 @@ dialog {
     margin: 0;
 }
 
-dialog .graph {
+.graph-dialog .graph {
     margin: 20px 0;
-}
-
-@media (min-width: 1500px) {
-    dialog .dialog-content {
-        display: grid;
-        grid-gap: 20px;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: auto;
-    }
 }
 
 /* -------------------------------------------------------------------

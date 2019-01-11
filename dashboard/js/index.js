@@ -5,17 +5,17 @@
 (function(utils, views) {
     'use strict';
 
-    let dialog = document.querySelector('dialog');
-    let dialogTitle = document.getElementById('dialog-title');
-    let performanceGraph = document.getElementById('performance-graph');
-    let loadGraph = document.getElementById('load-graph');
-    let bytesInGraph = document.getElementById('bytes-in-graph');
-    let requestsGraph = document.getElementById('requests-graph');
+    const dialog = document.querySelector('dialog');
+    const dialogTitle = document.getElementById('dialog-title');
+    const performanceGraph = document.getElementById('performance-graph');
+    const loadGraph = document.getElementById('load-graph');
+    const bytesInGraph = document.getElementById('bytes-in-graph');
+    const requestsGraph = document.getElementById('requests-graph');
 
     async function fetchSummary(fileName) {
         try {
-            let response = await fetch(`data/summary/${fileName}`);
-            let data = await response.json();
+            const response = await fetch(`data/summary/${fileName}`);
+            const data = await response.json();
             return data;
         } catch(e) {
             throw new Error(`fetchSummary() ${e}`);
@@ -24,6 +24,7 @@
 
     function bindEvents() {
         document.querySelector('.dashboard').addEventListener('click', handleDashboardClick);
+        dialog.addEventListener('close', handleCloseDialog);
 
         document.getElementById('website-select').addEventListener('change', (e) => {
             e.preventDefault();
@@ -37,11 +38,18 @@
         }
     }
 
-    function renderPerformanceGraphs(dataset) {
+    function handleCloseDialog() {
+        const graphs = document.querySelectorAll('.graph');
+
+        graphs.forEach(function(graph) {
+            graph.innerHTML = '';
+        });
+    }
+
+    function renderWebPageTestGraphs(dataset) {
         dialogTitle.innerHTML = `<h3>${dataset.url}</h3>`;
 
         window.d3.json(dataset.src, function(data) {
-            let perfData = [[], [], [], [], []];
             let loadData = [[], []];
             let requestData = [];
             let bytesInData = [];
@@ -55,7 +63,7 @@
             data = window.MG.convert.date(data, 'date', '%Y-%m-%dT%H:%M');
 
             data.forEach(entry => {
-                let date = entry.date;
+                const date = entry.date;
 
                 // if there was an error fetching the test, skip the iteration.
                 if (entry.runError && entry.runError.statusCode) {
@@ -66,32 +74,6 @@
                 if (Object.keys(entry.metrics).length === 0) {
                     return;
                 }
-
-                perfData[0].push({
-                    'date': date,
-                    'id': entry.id,
-                    'value': parseInt(entry.scores.performance)
-                });
-                perfData[1].push({
-                    'date': date,
-                    'id': entry.id,
-                    'value': parseInt(entry.scores.pwa)
-                });
-                perfData[2].push({
-                    'date': date,
-                    'id': entry.id,
-                    'value': parseInt(entry.scores.accessibility)
-                });
-                perfData[3].push({
-                    'date': date,
-                    'id': entry.id,
-                    'value': parseInt(entry.scores.bestpractices)
-                });
-                perfData[4].push({
-                    'date': date,
-                    'id': entry.id,
-                    'value': parseInt(entry.scores.seo)
-                });
 
                 loadData[0].push({
                     'date': date,
@@ -116,19 +98,6 @@
                     'id': entry.id,
                     'value': parseInt(entry.metrics.requests)
                 });
-            });
-
-            window.MG.data_graphic({
-                area: false,
-                title: 'Scores',
-                data: perfData,
-                width: d.width,
-                height: d.height,
-                left: d.left,
-                right: d.right,
-                y_label: '%',
-                target: performanceGraph,
-                legend: ['Performance', 'PWA', 'Accessibility', 'Best Practices', 'SEO']
             });
 
             window.MG.data_graphic({
@@ -167,14 +136,6 @@
                 target: requestsGraph
             });
 
-            window.d3.selectAll('#performance-graph path').on('click', function(data) {
-                const id = data.id;
-
-                if (id) {
-                    window.location.href = `https://www.webpagetest.org/lighthouse.php?test=${id}`;
-                }
-            });
-
             window.d3.selectAll('#load-graph path').on('click', function(data) {
                 const id = data.id;
 
@@ -201,21 +162,108 @@
         });
     }
 
+    function renderLighthouseGraphs(dataset) {
+        dialogTitle.innerHTML = `<h3>${dataset.url}</h3>`;
+
+        window.d3.json(dataset.src, function(data) {
+            let perfData = [[], [], [], [], []];
+            let d = {
+                height: 200,
+                left: 120,
+                right: 120,
+                width: 700
+            };
+
+            data = window.MG.convert.date(data, 'date', '%Y-%m-%dT%H:%M');
+
+            data.forEach(entry => {
+                const date = entry.date;
+
+                // if there was an error fetching the test, skip the iteration.
+                if (entry.runError && entry.runError.statusCode) {
+                    return;
+                }
+
+                // if for some reason WPT returned no data, skip the iteration.
+                if (Object.keys(entry.metrics).length === 0) {
+                    return;
+                }
+
+                perfData[0].push({
+                    'date': date,
+                    'id': entry.id,
+                    'value': parseInt(entry.scores.performance)
+                });
+                perfData[1].push({
+                    'date': date,
+                    'id': entry.id,
+                    'value': parseInt(entry.scores.pwa)
+                });
+                perfData[2].push({
+                    'date': date,
+                    'id': entry.id,
+                    'value': parseInt(entry.scores.accessibility)
+                });
+                perfData[3].push({
+                    'date': date,
+                    'id': entry.id,
+                    'value': parseInt(entry.scores.bestpractices)
+                });
+                perfData[4].push({
+                    'date': date,
+                    'id': entry.id,
+                    'value': parseInt(entry.scores.seo)
+                });
+            });
+
+            window.MG.data_graphic({
+                area: false,
+                title: 'Lighthouse Scores',
+                data: perfData,
+                width: d.width,
+                height: d.height,
+                left: d.left,
+                right: d.right,
+                y_label: '%',
+                target: performanceGraph,
+                legend: ['Performance', 'PWA', 'Accessibility', 'Best Practices', 'SEO']
+            });
+
+            window.d3.selectAll('#performance-graph path').on('click', function(data) {
+                const id = data.id;
+
+                if (id) {
+                    window.location.href = `https://www.webpagetest.org/lighthouse.php?test=${id}`;
+                }
+            });
+        });
+    }
+
     function showDialog(dataset) {
-        renderPerformanceGraphs(dataset);
+
+        if (dataset.origin === 'wpt') {
+            renderWebPageTestGraphs(dataset);
+        } else if (dataset.origin === 'lighthouse') {
+            renderLighthouseGraphs(dataset);
+        }
+
         window.dialogPolyfill.registerDialog(dialog);
         dialog.showModal();
     }
 
     function displayWebsiteReport(report) {
+        const dashboard = document.querySelector('.dashboard');
         fetchSummary(report).then(site => {
-            let table = views.renderTable(site);
-            document.querySelector('.dashboard').innerHTML = table;
+            const heading = views.renderHeading(site);
+            const wpt = views.renderWebPageTestSummary(site);
+            const lighthouse = views.renderLighthouseSummary(site);
+            const cloudinary = views.renderCloudinarySummary(site);
+            dashboard.innerHTML = heading + wpt + lighthouse + cloudinary;
         });
     }
 
     fetchSummary('index.json').then(data => {
-        let menu = views.renderNavigationMenu(data);
+        const menu = views.renderNavigationMenu(data);
         document.querySelector('nav').insertAdjacentHTML('beforeend', menu);
 
         bindEvents();
