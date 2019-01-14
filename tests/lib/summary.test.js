@@ -5,7 +5,7 @@
 /* global test, expect */
 
 const fs = require('fs');
-const summary = require('../lib/summary');
+const summary = require('../../lib/summary');
 
 test('getReportName', () => {
     expect(summary.getReportName('https://www.mozilla.org/en-US/firefox/')).toEqual('www_mozilla_org_en-US_firefox_');
