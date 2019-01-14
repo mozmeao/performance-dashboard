@@ -4,7 +4,7 @@
 
 /* global test, expect */
 
-const trends = require('../lib/trends');
+const trends = require('../../lib/trends');
 
 test('getTrendName', () => {
     expect(trends.getTrendName('https://www.mozilla.org/en-US/firefox/new/')).toEqual('www_mozilla_org_en-US_firefox_new_');

@@ -4,7 +4,7 @@
 
 /* global test, expect */
 
-const index = require('../lib/index');
+const index = require('../../lib/index');
 
 test('format', () => {
     let files = [

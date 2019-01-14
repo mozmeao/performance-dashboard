@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "pretest": "./node_modules/.bin/eslint .",
-    "test": "jest",
+    "test": "jest --no-cache",
     "prebuild": "npm test",
     "build": "node app.js -k $npm_config_key",
     "prestart": "npm run build",
@@ -27,9 +27,17 @@
   },
   "devDependencies": {
     "eslint": "^4.16.0",
-    "jest": "^22.2.1",
+    "esm": "3.2.5",
+    "jest": "24.0.0",
     "serve": "10.1.1"
   },
   "repository": "https://github.com/mozmeao/performance-dashboard.git",
-  "private": true
+  "private": true,
+  "jest": {
+    "verbose": true,
+    "transform": {
+      "^.+\\.js$": "esm"
+    },
+    "transformIgnorePatterns": []
+  }
 }
