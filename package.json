@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "pretest": "./node_modules/.bin/eslint .",
-    "test": "jest --no-cache",
+    "test": "npm run test-node && npm run test-browser",
+    "test-browser": "mocha --recursive './test/dashboard/**/*.js' --require esm",
+    "test-node": "mocha --recursive './test/lib/*.js'",
     "prebuild": "npm test",
     "build": "node app.js -k $npm_config_key",
     "prestart": "npm run build",
@@ -26,18 +28,12 @@
     "webpagetest": "^0.3.8"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "eslint": "^4.16.0",
-    "esm": "3.2.5",
-    "jest": "24.0.0",
+    "esm": "^3.2.5",
+    "mocha": "^6.0.0",
     "serve": "10.1.1"
   },
   "repository": "https://github.com/mozmeao/performance-dashboard.git",
-  "private": true,
-  "jest": {
-    "verbose": true,
-    "transform": {
-      "^.+\\.js$": "esm"
-    },
-    "transformIgnorePatterns": []
-  }
+  "private": true
 }
