@@ -4,7 +4,6 @@
 
 import { getDisplayName } from '../utils.js';
 
-
 const heading = {
 
     render: function(site) {

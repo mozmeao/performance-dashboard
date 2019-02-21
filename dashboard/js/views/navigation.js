@@ -4,7 +4,6 @@
 
 import { getDisplayName } from '../utils.js';
 
-
 const navigation = {
 
     render: function(data) {
@@ -26,4 +25,3 @@ const navigation = {
 };
 
 export default navigation;
-
