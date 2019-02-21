@@ -2,6 +2,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+/**
+ * Converts summary filename into a more human readable display name.
+ * @param {String}} filename.
+ * @returns {String}.
+ */
 function getDisplayName(fileName) {
     const prefix = fileName.substr(0, fileName.lastIndexOf('.')); // strip .json file extension if exists.
     const name = prefix ? prefix : fileName;
@@ -47,5 +52,19 @@ function formatTime(ms) {
     }
 }
 
-export { getDisplayName, formatBytes, formatTime };
+/**
+ * Fetches a summary json file.
+ * @param {String} filename.
+ * @returns {JSON}.
+ */
+async function fetchSummary(fileName) {
+    try {
+        const response = await fetch(`data/summary/${fileName}`);
+        const data = await response.json();
+        return data;
+    } catch(e) {
+        throw new Error(`fetchSummary() ${e}`);
+    }
+}
 
+export { getDisplayName, formatBytes, formatTime, fetchSummary };

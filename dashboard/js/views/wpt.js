@@ -4,8 +4,128 @@
 
 import { formatTime, formatBytes } from '../utils.js';
 
-
 const wpt = {
+
+    renderGraph(dataset) {
+        const loadGraph = document.getElementById('load-graph');
+        const bytesInGraph = document.getElementById('bytes-in-graph');
+        const requestsGraph = document.getElementById('requests-graph');
+        const dialogTitle = document.getElementById('dialog-title');
+
+        dialogTitle.innerHTML = `<h3>${dataset.url}</h3>`;
+
+        window.d3.json(dataset.src, function(data) {
+            let loadData = [[], []];
+            let requestData = [];
+            let bytesInData = [];
+            let d = {
+                height: 200,
+                left: 120,
+                right: 120,
+                width: 700
+            };
+
+            data = window.MG.convert.date(data, 'date', '%Y-%m-%dT%H:%M');
+
+            data.forEach(entry => {
+                const date = entry.date;
+
+                // if there was an error fetching the test, skip the iteration.
+                if (entry.runError && entry.runError.statusCode) {
+                    return;
+                }
+
+                // if for some reason WPT returned no data, skip the iteration.
+                if (Object.keys(entry.metrics).length === 0) {
+                    return;
+                }
+
+                loadData[0].push({
+                    'date': date,
+                    'id': entry.id,
+                    'value': parseInt(entry.metrics.documentComplete)
+                });
+
+                loadData[1].push({
+                    'date': date,
+                    'id': entry.id,
+                    'value': parseInt(entry.metrics.fullyLoaded)
+                });
+
+                bytesInData.push({
+                    'date': date,
+                    'id': entry.id,
+                    'value': parseInt(entry.metrics.bytesIn)
+                });
+
+                requestData.push({
+                    'date': date,
+                    'id': entry.id,
+                    'value': parseInt(entry.metrics.requests)
+                });
+            });
+
+            window.MG.data_graphic({
+                area: false,
+                title: 'Load times',
+                data: loadData,
+                width: d.width,
+                height: d.height,
+                left: d.left,
+                right: d.right,
+                target: loadGraph,
+                y_label: 'MS',
+                legend: ['Doc Complete', 'Fully Loaded']
+            });
+
+            window.MG.data_graphic({
+                area: false,
+                title: 'Bytes In',
+                data: bytesInData,
+                width: d.width,
+                height: d.height,
+                left: d.left,
+                right: d.right,
+                target: bytesInGraph
+            });
+
+            window.MG.data_graphic({
+                area: false,
+                title: 'Requests',
+                data: requestData,
+                width: d.width,
+                height: d.height,
+                left: d.left,
+                right: d.right,
+                y_label: 'Total',
+                target: requestsGraph
+            });
+
+            window.d3.selectAll('#load-graph path').on('click', function(data) {
+                const id = data.id;
+
+                if (id) {
+                    window.location.href = `https://www.webpagetest.org/results.php?test=${id}`;
+                }
+            });
+
+            window.d3.selectAll('#bytes-in-graph rect').on('click', function(data) {
+                const id = data.id;
+
+                if (id) {
+                    window.location.href = `https://www.webpagetest.org/results.php?test=${id}`;
+                }
+            });
+
+            window.d3.selectAll('#requests-graph rect').on('click', function(data) {
+                const id = data.id;
+
+                if (id) {
+                    window.location.href = `https://www.webpagetest.org/results.php?test=${id}`;
+                }
+            });
+        });
+    },
 
     renderRow: function(name, page) {
         const docComplete = formatTime(page.metrics.documentComplete);
@@ -51,4 +171,3 @@ const wpt = {
 };
 
 export default wpt;
-

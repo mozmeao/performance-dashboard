@@ -34,4 +34,3 @@ const cloudinary = {
 };
 
 export default cloudinary;
-
