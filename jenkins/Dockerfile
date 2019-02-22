@@ -10,7 +10,7 @@ RUN yarn install --pure-lockfile && \
     rm -rf /usr/local/share/.cache/yarn
 
 COPY ./lib ./lib/
-COPY ./tests ./tests/
+COPY ./test ./test/
 COPY ./sites ./sites/
 COPY ./dashboard ./dashboard/
 COPY ./jenkins ./jenkins/
