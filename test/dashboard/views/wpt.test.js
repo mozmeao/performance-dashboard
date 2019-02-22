@@ -6,8 +6,7 @@
 
 import wpt from '../../../dashboard/js/views/wpt.js';
 import summary from '../../data/summary/js/test_summary.js';
-
-const expect = require('chai').expect;
+import { expect } from 'chai';
 
 describe('wpt.js', function() {
 

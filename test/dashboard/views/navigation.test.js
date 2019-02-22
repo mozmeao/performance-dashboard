@@ -6,8 +6,7 @@
 
 import navigation from '../../../dashboard/js/views/navigation.js';
 import index from '../../data/summary/js/index.js';
-
-const expect = require('chai').expect;
+import { expect } from 'chai';
 
 describe('navigation.js', function() {
 

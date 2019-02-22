@@ -5,8 +5,7 @@
 /* global describe, it */
 
 import { getDisplayName, formatBytes, formatTime } from '../../dashboard/js/utils.js';
-
-const expect = require('chai').expect;
+import { expect } from 'chai';
 
 describe('utils.js', function() {
 

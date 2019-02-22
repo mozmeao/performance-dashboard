@@ -6,8 +6,7 @@
 
 import heading from '../../../dashboard/js/views/heading.js';
 import summary from '../../data/summary/js/test_summary.js';
-
-const expect = require('chai').expect;
+import { expect } from 'chai';
 
 describe('heading.js', function() {
 

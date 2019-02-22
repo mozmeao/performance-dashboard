@@ -6,8 +6,7 @@
 
 import cloudinary from '../../../dashboard/js/views/cloudinary.js';
 import summary from '../../data/summary/js/test_summary.js';
-
-const expect = require('chai').expect;
+import { expect } from 'chai';
 
 describe('cloudinary.js', function() {
 

@@ -6,8 +6,7 @@
 
 import lighthouse from '../../../dashboard/js/views/lighthouse.js';
 import summary from '../../data/summary/js/test_summary.js';
-
-const expect = require('chai').expect;
+import { expect } from 'chai';
 
 describe('lighthouse.js', function() {
 
