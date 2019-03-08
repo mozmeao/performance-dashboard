@@ -37,6 +37,10 @@ describe('summary.js', function() {
             expect(result.metrics.documentComplete).to.equal(8920);
             expect(result.metrics.fullyLoaded).to.equal(9976);
             expect(result.metrics.requests).to.equal(53);
+            expect(result.metrics.firstByte).to.equal(1484);
+            expect(result.metrics.firstInteractive).to.equal(5228);
+            expect(result.metrics.speedIndex).to.equal(3742);
+            expect(result.metrics.startRender).to.equal(2800);
             expect(result.runError).to.equal(null);
             expect(result.scores.accessibility).to.equal(79);
             expect(result.scores.bestpractices).to.equal(93);

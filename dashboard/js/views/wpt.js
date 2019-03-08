@@ -15,7 +15,7 @@ const wpt = {
         dialogTitle.innerHTML = `<h3>${dataset.url}</h3>`;
 
         window.d3.json(dataset.src, function(data) {
-            let loadData = [[], []];
+            let loadData = [[], [], [], [], [], []];
             let requestData = [];
             let bytesInData = [];
             let d = {
@@ -43,25 +43,49 @@ const wpt = {
                 loadData[0].push({
                     'date': date,
                     'id': entry.id,
-                    'value': parseInt(entry.metrics.documentComplete)
+                    'value': entry.metrics.firstByte ? parseInt(entry.metrics.firstByte) : 0
                 });
 
                 loadData[1].push({
                     'date': date,
                     'id': entry.id,
-                    'value': parseInt(entry.metrics.fullyLoaded)
+                    'value': entry.metrics.startRender ? parseInt(entry.metrics.startRender) : 0
+                });
+
+                loadData[2].push({
+                    'date': date,
+                    'id': entry.id,
+                    'value': entry.metrics.firstInteractive ? parseInt(entry.metrics.firstInteractive) : 0
+                });
+
+                loadData[3].push({
+                    'date': date,
+                    'id': entry.id,
+                    'value': entry.metrics.documentComplete ? parseInt(entry.metrics.documentComplete) : 0
+                });
+
+                loadData[4].push({
+                    'date': date,
+                    'id': entry.id,
+                    'value': entry.metrics.fullyLoaded ? parseInt(entry.metrics.fullyLoaded) : 0
+                });
+
+                loadData[5].push({
+                    'date': date,
+                    'id': entry.id,
+                    'value': entry.metrics.speedIndex ? parseInt(entry.metrics.speedIndex) : 0
                 });
 
                 bytesInData.push({
                     'date': date,
                     'id': entry.id,
-                    'value': parseInt(entry.metrics.bytesIn)
+                    'value': entry.metrics.bytesIn ? parseInt(entry.metrics.bytesIn) : 0
                 });
 
                 requestData.push({
                     'date': date,
                     'id': entry.id,
-                    'value': parseInt(entry.metrics.requests)
+                    'value': entry.metrics.requests ? parseInt(entry.metrics.requests) : 0
                 });
             });
 
@@ -75,7 +99,7 @@ const wpt = {
                 right: d.right,
                 target: loadGraph,
                 y_label: 'MS',
-                legend: ['Doc Complete', 'Fully Loaded']
+                legend: ['First Byte', 'Start Render', 'First Interactive', 'Doc Complete', 'Fully Loaded', 'Speed Index']
             });
 
             window.MG.data_graphic({
@@ -129,16 +153,24 @@ const wpt = {
 
     renderRow: function(name, page) {
         const docComplete = formatTime(page.metrics.documentComplete);
+        const firstByte = formatTime(page.metrics.firstByte);
+        const firstInteractive = formatTime(page.metrics.firstInteractive);
         const fullyLoaded = formatTime(page.metrics.fullyLoaded);
         const pageWeight = formatBytes(page.metrics.bytesIn);
+        const speedIndex = formatTime(page.metrics.speedIndex);
+        const startRender = formatTime(page.metrics.startRender);
 
         return `
             <tr>
                 <td><a href="${page.url}">${page.url}</a></td>
+                <td>${firstByte}</td>
+                <td>${startRender}</td>
+                <td>${firstInteractive}</td>
                 <td>${docComplete}</td>
                 <td>${fullyLoaded}</td>
                 <td>${pageWeight}</td>
                 <td>${page.metrics.requests}</td>
+                <td>${speedIndex}</td>
                 <td><a href="${page.summary}">View report</a></td>
                 <td><button class="button-trend" type="button" data-src="data/trends/${name}/${page.trend}" data-url="${page.url}" data-origin="wpt">View</button></td>
             </tr>
@@ -156,10 +188,14 @@ const wpt = {
                 <thead>
                 <tr>
                     <th scope="col">Page</th>
+                    <th scope="col">First Byte</th>
+                    <th scope="col">Start Render</th>
+                    <th scope="col">First interactive</th>
                     <th scope="col">Document Complete</th>
                     <th scope="col">Fully Loaded</th>
                     <th scope="col">Page Weight</th>
                     <th scope="col">Requests</th>
+                    <th scope="col">Speed Index</th>
                     <th scope="col">Report</th>
                     <th scope="col">Trend</th>
                 </tr>
