@@ -14,9 +14,8 @@ const lighthouse = {
             let perfData = [[], [], [], [], []];
             let d = {
                 height: 200,
-                left: 120,
-                right: 120,
-                width: 700
+                left: 100,
+                right: 100
             };
 
             data = window.MG.convert.date(data, 'date', '%Y-%m-%dT%H:%M');
@@ -65,13 +64,14 @@ const lighthouse = {
                 area: false,
                 title: 'Lighthouse Scores',
                 data: perfData,
-                width: d.width,
+                full_width: true,
                 height: d.height,
                 left: d.left,
                 right: d.right,
                 y_label: '%',
                 target: performanceGraph,
-                legend: ['Performance', 'PWA', 'Accessibility', 'Best Practices', 'SEO']
+                legend: ['Performance', 'PWA', 'Accessibility', 'Best Practices', 'SEO'],
+                legend_target: '.legend.performance'
             });
 
             window.d3.selectAll('#performance-graph path').on('click', function(data) {

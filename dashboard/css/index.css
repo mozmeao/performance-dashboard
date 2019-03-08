@@ -163,15 +163,25 @@ meter::-webkit-meter-even-less-good-value {
 
 .graph-dialog {
     position: fixed;
-    top: 50%;
-    transform: translate(0, -50%);
-  }
+    top: 40px;
+    width: 90%;
+    max-height: 90%;
+}
+
+@media (min-width: 1000px) {
+    .dialog-content {
+        display: grid;
+        grid-template-columns: repeat(2, 50%);
+        grid-row-gap: 40px;
+        grid-auto-rows: 1fr;
+    }
+}
 
 #dialog-title {
     background: #455a64;
     margin-bottom: 40px;
-    padding: 10px;
-    text-align: center;
+    padding: 10px 90px 10px 10px;
+    word-wrap: break-word;
 }
 
 #dialog-title h3 {
@@ -181,6 +191,23 @@ meter::-webkit-meter-even-less-good-value {
 
 .graph-dialog .graph {
     margin: 20px 0;
+}
+
+.graph-dialog .legend {
+    font-size: .9rem;
+    margin: 0 auto;
+    max-width: 500px;
+    text-align: center;
+}
+
+.graph-dialog .legend span {
+    display: inline-block;
+}
+
+.graph-dialog form {
+    position: absolute;
+    top: 25px;
+    right: 25px;
 }
 
 /* -------------------------------------------------------------------

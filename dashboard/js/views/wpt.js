@@ -20,9 +20,8 @@ const wpt = {
             let bytesInData = [];
             let d = {
                 height: 200,
-                left: 120,
-                right: 120,
-                width: 700
+                left: 100,
+                right: 100
             };
 
             data = window.MG.convert.date(data, 'date', '%Y-%m-%dT%H:%M');
@@ -91,22 +90,23 @@ const wpt = {
 
             window.MG.data_graphic({
                 area: false,
-                title: 'Load times',
+                title: 'Page Speed',
                 data: loadData,
-                width: d.width,
+                full_width: true,
                 height: d.height,
                 left: d.left,
                 right: d.right,
                 target: loadGraph,
                 y_label: 'MS',
-                legend: ['First Byte', 'Start Render', 'First Interactive', 'Doc Complete', 'Fully Loaded', 'Speed Index']
+                legend: ['First Byte', 'Start Render', 'First Interactive', 'Doc Complete', 'Fully Loaded', 'Speed Index'],
+                legend_target: '.legend.load-times'
             });
 
             window.MG.data_graphic({
-                area: false,
+                area: true,
                 title: 'Bytes In',
                 data: bytesInData,
-                width: d.width,
+                full_width: true,
                 height: d.height,
                 left: d.left,
                 right: d.right,
@@ -114,10 +114,10 @@ const wpt = {
             });
 
             window.MG.data_graphic({
-                area: false,
+                area: true,
                 title: 'Requests',
                 data: requestData,
-                width: d.width,
+                full_width: true,
                 height: d.height,
                 left: d.left,
                 right: d.right,

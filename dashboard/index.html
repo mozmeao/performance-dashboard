@@ -27,10 +27,20 @@
   <dialog class="graph-dialog">
     <div id="dialog-title"></div>
     <div class="dialog-content">
-      <div class="graph" id="performance-graph"></div>
-      <div class="graph" id="load-graph"></div>
-      <div class="graph" id="bytes-in-graph"></div>
-      <div class="graph" id="requests-graph"></div>
+      <div class="graph-container">
+        <div class="graph" id="performance-graph"></div>
+        <div class="legend performance"></div>
+      </div>
+      <div class="graph-container">
+        <div class="graph" id="load-graph"></div>
+        <div class="legend load-times"></div>
+      </div>
+      <div class="graph-container">
+        <div class="graph" id="bytes-in-graph"></div>
+      </div>
+      <div class="graph-container">
+        <div class="graph" id="requests-graph"></div>
+      </div>
     </div>
     <form id="dialog-form" method="dialog">
       <input id="close-dialog" type="submit" value="Close" />

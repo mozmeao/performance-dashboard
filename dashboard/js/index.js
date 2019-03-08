@@ -36,12 +36,8 @@ function handleCloseDialog() {
 }
 
 function showDialog(dataset) {
-    if (dataset.origin === 'wpt') {
-        wpt.renderGraph(dataset);
-    } else if (dataset.origin === 'lighthouse') {
-        lighthouse.renderGraph(dataset);
-    }
-
+    wpt.renderGraph(dataset);
+    lighthouse.renderGraph(dataset);
     window.dialogPolyfill.registerDialog(dialog);
     dialog.showModal();
 }
