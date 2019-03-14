@@ -2,12 +2,13 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import { getDisplayName } from '../utils.js';
+import { getDisplayName, formatDate } from '../utils.js';
 
 const heading = {
 
     render: function(site) {
         const name = getDisplayName(site.name);
+        const date = formatDate(site.date);
 
         return `
             <header>
@@ -15,7 +16,7 @@ const heading = {
                 <ul class="meta">
                     <li><strong>Location:</strong> ${site.location}</li>
                     <li><strong>Connection:</strong> ${site.connection}</li>
-                    <li><strong>Date:</strong> <time>${site.date}</time></li>
+                    <li><strong>Date:</strong> <time>${date}</time></li>
                 </ul>
             </header>
         `;

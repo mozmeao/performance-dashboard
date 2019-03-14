@@ -17,7 +17,7 @@ describe('heading.js', function() {
             expect(result).to.contain('<h2>www.mozilla.org</h2>');
             expect(result).to.contain('<li><strong>Location:</strong> ec2-us-west-1:Chrome</li>');
             expect(result).to.contain('<li><strong>Connection:</strong> 3G</li>');
-            expect(result).to.contain('<li><strong>Date:</strong> <time>2018-03-26T11:20</time></li>');
+            expect(result).to.contain('<li><strong>Date:</strong> <time>2018-03-26</time></li>');
         });
     });
 });

@@ -4,7 +4,7 @@
 
 /* global describe, it */
 
-import { getDisplayName, formatBytes, formatTime } from '../../dashboard/js/utils.js';
+import { getDisplayName, formatBytes, formatTime, formatDate } from '../../dashboard/js/utils.js';
 import { expect } from 'chai';
 
 describe('utils.js', function() {
@@ -38,6 +38,13 @@ describe('utils.js', function() {
             expect(formatTime(0)).to.equal('0.0s');
             expect(formatTime(537)).to.equal('0.537s');
             expect(formatTime(10863)).to.equal('10.863s');
+        });
+    });
+
+    describe('formatdate', function() {
+        it('should format date as expected', function () {
+            expect(formatDate('2019-03-14T03:53')).to.equal('2019-03-14');
+            expect(formatDate('2019-03-14')).to.equal('2019-03-14');
         });
     });
 });

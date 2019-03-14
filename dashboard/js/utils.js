@@ -53,6 +53,21 @@ function formatTime(ms) {
 }
 
 /**
+ * Returns short date string (minus the time).
+ * @param {String} date.
+ * @returns {String}.
+ */
+function formatDate(date) {
+    const splitDate = date.split('T');
+
+    if (splitDate[0]) {
+        return splitDate[0];
+    }
+
+    return date;
+}
+
+/**
  * Fetches a summary json file.
  * @param {String} filename.
  * @returns {JSON}.
@@ -67,4 +82,4 @@ async function fetchSummary(fileName) {
     }
 }
 
-export { getDisplayName, formatBytes, formatTime, fetchSummary };
+export { getDisplayName, formatBytes, formatTime, formatDate, fetchSummary };
