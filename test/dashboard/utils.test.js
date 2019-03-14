@@ -17,16 +17,16 @@ describe('utils.js', function() {
 
     describe('formatBytes', function() {
         it('should format bytes as expected', function () {
-            expect(formatBytes(undefined)).to.equal('0b');
-            expect(formatBytes(null)).to.equal('0b');
-            expect(formatBytes(-1)).to.equal('0b');
-            expect(formatBytes(0)).to.equal('0b');
-            expect(formatBytes(616)).to.equal('616b');
-            expect(formatBytes(616892)).to.equal('602.43kb');
-            expect(formatBytes(3091997)).to.equal('2.95mb');
-            expect(formatBytes(45116452)).to.equal('43.03mb');
-            expect(formatBytes(482756123)).to.equal('460.39mb');
-            expect(formatBytes(3859162745)).to.equal('3.59gb');
+            expect(formatBytes(undefined)).to.equal('0 B');
+            expect(formatBytes(null)).to.equal('0 B');
+            expect(formatBytes(-1)).to.equal('0 B');
+            expect(formatBytes(0)).to.equal('0 B');
+            expect(formatBytes(616)).to.equal('616 B');
+            expect(formatBytes(616892)).to.equal('602.4 KB');
+            expect(formatBytes(3091997)).to.equal('2.9 MB');
+            expect(formatBytes(45116452)).to.equal('43 MB');
+            expect(formatBytes(482756123)).to.equal('460.4 MB');
+            expect(formatBytes(3859162745)).to.equal('3.6 GB');
         });
     });
 

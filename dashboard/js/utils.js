@@ -16,19 +16,19 @@ function getDisplayName(fileName) {
 /**
  * Converts bytes to a more human readable value.
  * @param {Number} bytes.
- * @param {Number} decimals. Optional parameter defaults to 2.
+ * @param {Number} decimals. Optional parameter defaults to 0.
  * @returns {String}.
  */
 function formatBytes(bytes, decimals) {
     if (typeof bytes !== 'number' || bytes <= 0) {
-        return '0b';
+        return '0 B';
     }
 
     const k = 1024;
-    const dm = decimals || 2;
-    const sizes = ['b', 'kb', 'mb', 'gb', 'tb', 'pb', 'eb', 'zb', 'yb'];
+    const dm = decimals || 1;
+    const sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + sizes[i];
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 }
 
 /**
