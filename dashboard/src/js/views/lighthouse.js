@@ -6,16 +6,11 @@ const lighthouse = {
 
     renderGraph(dataset) {
         const performanceGraph = document.getElementById('performance-graph');
-        const dialogTitle = document.getElementById('dialog-title');
-
-        dialogTitle.innerHTML = `<h3>${dataset.url}</h3>`;
 
         window.d3.json(dataset.src, function(data) {
             let perfData = [[], [], [], [], []];
             let d = {
-                height: 200,
-                left: 100,
-                right: 100
+                height: 200
             };
 
             data = window.MG.convert.date(data, 'date', '%Y-%m-%dT%H:%M');
@@ -68,20 +63,22 @@ const lighthouse = {
                 height: d.height,
                 left: d.left,
                 right: d.right,
-                y_label: '%',
                 target: performanceGraph,
                 legend: ['Performance', 'PWA', 'Accessibility', 'Best Practices', 'SEO'],
                 legend_target: '.legend.performance'
             });
 
-            window.d3.selectAll('#performance-graph path').on('click', function(data) {
-                const id = data.id;
-
-                if (id) {
-                    window.location.href = `https://www.webpagetest.org/lighthouse.php?test=${id}`;
-                }
-            });
+            window.d3.selectAll('#performance-graph path').on('click', lighthouse.openReport);
         });
+    },
+
+    openReport: function(data) {
+        const id = data.id;
+
+        if (id) {
+            const tab = window.open(`https://www.webpagetest.org/lighthouse.php?test=${id}`, '_blank');
+            tab.focus();
+        }
     },
 
     renderScore: function(score) {
@@ -99,14 +96,14 @@ const lighthouse = {
 
         return `
             <tr>
-                <td><a href="${page.url}">${page.url}</a></td>
+                <th scope="row"><a href="${page.url}" target="_blank" rel="noopener noreferer">${page.url}</a></th>
                 <td>${scores.performance}</td>
                 <td>${scores.pwa}</td>
                 <td>${scores.accessibility}</td>
                 <td>${scores.bestpractices}</td>
                 <td>${scores.seo}</td>
-                <td><a href="${page.lighthouse}">View report</a></td>
-                <td><button class="button-trend" type="button" data-src="data/trends/${name}/${page.trend}" data-url="${page.url}" data-origin="lighthouse">View</button></td>
+                <td><a class="mzp-c-button mzp-t-small" href="${page.lighthouse}" target="_blank" rel="noopener noreferer">Open</a></td>
+                <td><button class="mzp-c-button mzp-t-secondary mzp-t-small button-trend" type="button" data-src="data/trends/${name}/${page.trend}" data-url="${page.url}" data-origin="lighthouse">Open</button></td>
             </tr>
         `;
     },
@@ -115,24 +112,26 @@ const lighthouse = {
         const rows = site.pages.map(page => lighthouse.renderRow(site.name, page)).join('');
 
         return `
-            <table>
-                <caption>
-                    <h2>Lighthouse</h2>
-                </caption>
-                <thead>
-                <tr>
-                    <th scope="col">Page</th>
-                    <th scope="col">Performance</th>
-                    <th scope="col">PWA</th>
-                    <th scope="col">Accessibility</th>
-                    <th scope="col">Best Practices</th>
-                    <th scope="col">SEO</th>
-                    <th scope="col">Report</th>
-                    <th scope="col">Trend</th>
-                </tr>
-                </thead>
-                <tbody>${rows}</tbody>
-            </table>
+            <div class="c-table-container">
+                <table class="mzp-u-data-table">
+                    <caption>
+                        <h3>Lighthouse</h3>
+                    </caption>
+                    <thead>
+                    <tr>
+                        <td></td>
+                        <th scope="col">Performance</th>
+                        <th scope="col">PWA</th>
+                        <th scope="col">Accessibility</th>
+                        <th scope="col">Best Practices</th>
+                        <th scope="col">SEO</th>
+                        <th scope="col">Report</th>
+                        <th scope="col">Graph</th>
+                    </tr>
+                    </thead>
+                    <tbody>${rows}</tbody>
+                </table>
+            </div>
         `;
     }
 };

@@ -13,8 +13,8 @@ const navigation = {
         }).join('');
 
         return `
-            <form>
-                <label for="website-select">Select a website:</label>
+            <form class="c-navigation-select-form">
+                <label for="website-select">Website:</label>
                 <select id="website-select">
                     <option selected disabled>-- Choose --</option>
                     ${options}

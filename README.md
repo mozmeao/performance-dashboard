@@ -43,8 +43,20 @@ Options:
 
 ## Run
 
-To generate reports for all sites and spin up a dashboard:
+To generate reports for all sites, build front-end dependencies, and open a local dev server:
 
 ```
 npm start -k <key>
+```
+
+To just start a local dev server:
+
+```
+npm run serve
+```
+
+To build front-end dependencies and watch for changes:
+
+```
+npm run watch
 ```

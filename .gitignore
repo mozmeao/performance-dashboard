@@ -1,5 +1,6 @@
 # Dashboard
 dashboard/data/
+dashboard/dist/
 
 # Logs
 logs

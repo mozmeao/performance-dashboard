@@ -4,7 +4,7 @@
 
 /* global describe, it */
 
-import navigation from '../../../dashboard/js/views/navigation.js';
+import navigation from '../../../dashboard/src/js/views/navigation.js';
 import index from '../../data/summary/js/index.js';
 import { expect } from 'chai';
 

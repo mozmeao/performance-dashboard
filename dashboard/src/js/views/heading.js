@@ -14,7 +14,7 @@ const heading = {
             <header>
                 <h2>${name}</h2>
                 <ul class="meta">
-                    <li><strong>Location:</strong> ${site.location}</li>
+                    <li><strong>WPT Location:</strong> ${site.location}</li>
                     <li><strong>Connection:</strong> ${site.connection}</li>
                     <li><strong>Date:</strong> <time>${date}</time></li>
                 </ul>

@@ -2,30 +2,83 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Web Performance Dashboard</title>
-  <meta name="description" content="" />
-  <meta name="author" content="" />
+  <title>Web Performance Dashboard - Mozilla</title>
+  <meta name="description" content="A performance dashboard for Mozilla websites, powered by Web Page Test and Lighthouse" />
+  <meta name="author" content="Alex Gibson" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex, nofollow" />
-  <link rel="stylesheet" type="text/css" href="css/index.css">
-  <link rel="stylesheet" type="text/css" href="css/lib/dialog-polyfill.css">
-  <link rel="stylesheet" type="text/css" href="css/lib/metricsgraphics.css">
-  <link rel="shortcut icon" href="images/favicon.ico">
+  <link rel="stylesheet" type="text/css" href="dist/protocol/css/protocol.css">
+  <link rel="stylesheet" type="text/css" href="dist/protocol/css/protocol-extra.css">
+  <link rel="stylesheet" type="text/css" href="dist/css/main.css">
+  <link rel="stylesheet" type="text/css" href="vendor/css/metricsgraphics.css">
+  <link rel="shortcut icon" href="dist/images/favicon.ico">
 </head>
 <body>
-  <main>
+  <div class="mzp-c-navigation">
+    <div class="mzp-c-navigation-l-content">
+      <div class="mzp-c-navigation-container">
+        <button class="mzp-c-navigation-menu-button" type="button" aria-controls="main-navigation">Menu</button>
+        <div class="mzp-c-navigation-logo">
+          <a href="https://www.mozilla.org/">Mozilla</a>
+        </div>
+        <div class="mzp-c-navigation-items" id="main-navigation">
+          <div class="mzp-c-navigation-menu">
+            <nav class="c-navigation-select-menu" role="navigation"></nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <main class="mzp-l-content">
     <header class="main-heading">
-      <h1>Mozilla Website Performance Dashboard</h1>
+      <h1>Web Performance Dashboard</h1>
     </header>
-    <nav role="navigation"></nav>
-    <div class="dashboard"></div>
-    <footer>
-      <p><small>Powered by <a href="https://www.webpagetest.org/">WebPageTest</a> & <a href="https://developers.google.com/web/tools/lighthouse/">Lighthouse</a>. Source code on <a href="https://github.com/mozmeao/performance-dashboard">GitHub</a>.</small></p>
-    </footer>
+
+    <div class="dashboard">
+      <p>Select a website using the menu in the top right to view performance reports.</p>
+    </div>
   </main>
 
-  <dialog class="graph-dialog">
-    <div id="dialog-title"></div>
+  <footer class="mzp-c-footer">
+    <div class="mzp-l-content">
+      <nav class="mzp-c-footer-primary">
+        <div class="mzp-c-footer-primary-logo"><a href="https://www.mozilla.org/">Mozilla</a></div>
+
+        <div class="mzp-c-footer-sections">
+          <section class="mzp-c-footer-section">
+            <h5 class="mzp-c-footer-heading">Resources</h5>
+            <ul class="mzp-c-footer-list">
+              <li><a href="https://www.webpagetest.org/">Web Page Test</a></li>
+              <li><a href="https://developers.google.com/web/tools/lighthouse/">Lighthouse</a></li>
+              <li><a href="https://webspeedtest.cloudinary.com/">Cloudinary</a></li>
+            </ul>
+          </section>
+          <section class="mzp-c-footer-section">
+            <h5 class="mzp-c-footer-heading">Contribute</h5>
+            <ul class="mzp-c-footer-list">
+              <li><a href="https://github.com/mozmeao/performance-dashboard/">GitHub</a></li>
+            </ul>
+          </section>
+        </div>
+      </nav>
+
+      <nav class="mzp-c-footer-secondary">
+        <div class="mzp-c-footer-legal">
+          <p class="mzp-c-footer-license">
+            Visit Mozilla Corporation’s not-for-profit parent, the
+            <a href="https://foundation.mozilla.org/">Mozilla Foundation</a>.
+            <br> Portions of this content are ©1998–2018 by individual mozilla.org contributors. Content available under a <a rel="license" href="https://www.mozilla.org/foundation/licensing/website-content/">Creative Commons license</a>.
+          </p>
+          <ul class="mzp-c-footer-terms">
+            <li><a href="https://www.mozilla.org/privacy/">Privacy</a></li>
+            <li><a href="https://www.mozilla.org/about/legal/">Legal</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </footer>
+
+  <div class="mzp-u-modal-content">
     <div class="dialog-content">
       <div class="graph-container">
         <div class="graph" id="performance-graph"></div>
@@ -42,15 +95,12 @@
         <div class="graph" id="requests-graph"></div>
       </div>
     </div>
-    <form id="dialog-form" method="dialog">
-      <input id="close-dialog" type="submit" value="Close" />
-    </form>
-  </dialog>
+  </div>
 
-  <script src="js/lib/dialog-polyfill.js"></script>
-  <script src="js/lib/jquery-3.3.1.min.js"></script>
-  <script src="js/lib/d3.min.js"></script>
-  <script src="js/lib/metricsgraphics.min.js"></script>
-  <script type="module" src="js/index.js"></script>
+  <script src="dist/protocol/js/protocol-modal.js"></script>
+  <script src="vendor/js/jquery-3.3.1.min.js"></script>
+  <script src="vendor/js/d3.min.js"></script>
+  <script src="vendor/js/metricsgraphics.min.js"></script>
+  <script src="dist/js/index.js"></script>
 </body>
 </html>

@@ -1,0 +1,190 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+/* -------------------------------------------------------------------
+ * Navigation menu */
+
+.c-navigation-select-form {
+    margin: $spacing-lg 0;
+
+    label {
+        display: inline-block;
+        margin-right: $spacing-sm;
+    }
+}
+
+@media #{$mq-md} {
+    .mzp-c-navigation-menu {
+        float: right;
+    }
+}
+
+/* -------------------------------------------------------------------
+ * Dashboard header */
+
+.main-heading {
+    h1 {
+        @include text-display-lg;
+        word-wrap: break-word;
+    }
+
+    @media #{$mq-md} {
+        margin-bottom: $layout-md;
+    }
+}
+
+.dashboard > header {
+    background: #ededf0;
+    padding: $spacing-md;
+
+    h2 {
+        @include open-sans;
+        @include text-body-lg;
+        word-wrap: break-word;
+    }
+
+    .meta {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .meta li {
+        display: inline-block;
+        margin: 0 $spacing-lg 0 0;
+        padding: 0;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    @media #{$mq-md} {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-row-gap: $spacing-xl;
+        grid-auto-rows: 1fr;
+
+        h2 {
+            margin-bottom: 0;
+        }
+
+        .meta {
+            text-align: right;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------
+ * Dashboard tables */
+
+.dashboard {
+    min-height: 400px;
+}
+
+.c-table-container {
+    margin: $spacing-lg 0;
+    max-width: 100%;
+    overflow-x: scroll;
+
+    @media #{$mq-md} {
+        margin: $spacing-2xl 0;
+        overflow-x: auto;
+    }
+}
+
+.mzp-u-data-table {
+    width: 100%;
+
+    h3 {
+        @include open-sans;
+        @include text-display-sm;
+        font-weight: normal;
+    }
+
+    .error {
+        color: $color-red-50;
+    }
+}
+
+/* -------------------------------------------------------------------
+ * Score meter styling */
+
+meter {
+    background: $color-gray-20;
+    max-width: 60px;
+}
+
+meter:-moz-meter-optimum::-moz-meter-bar {
+    background: $color-green-50;
+}
+
+meter:-moz-meter-sub-optimum::-moz-meter-bar {
+    background: $color-orange-50;
+}
+
+meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+    background: $color-red-50;
+}
+
+meter::-webkit-meter-bar {
+    background: $color-gray-20;
+}
+
+meter::-webkit-meter-optimum-value {
+    background: $color-green-50;
+}
+
+meter::-webkit-meter-suboptimum-value {
+    background: $color-orange-50;
+}
+
+meter::-webkit-meter-even-less-good-value {
+    background: $color-red-50;
+}
+
+/* -------------------------------------------------------------------
+ * Dialog & graph styles */
+
+.mzp-u-modal-content {
+    background: #fff;
+    display: none;
+    min-width: 240px;
+
+    .graph {
+        margin: $spacing-lg 0;
+        min-width: 208px;
+
+        path,
+        rect {
+            cursor: pointer;
+        }
+    }
+
+    .legend {
+        font-size: .9rem;
+        margin: 0 auto;
+        max-width: 500px;
+        text-align: center;
+
+        span {
+            display: inline-block;
+        }
+    }
+
+    @media #{$mq-md} {
+        .dialog-content {
+            display: grid;
+            grid-template-columns: repeat(2, 50%);
+            grid-row-gap: $spacing-xl;
+            grid-auto-rows: 1fr;
+        }
+    }
+}
+
+.mzp-c-modal .mzp-u-modal-content {
+    display: block;
+}

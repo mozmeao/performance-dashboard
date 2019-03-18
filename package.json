@@ -10,8 +10,11 @@
     "test-node": "mocha --recursive './test/lib/*.js'",
     "prebuild": "npm test",
     "build": "node app.js -k $npm_config_key",
-    "prestart": "npm run build",
-    "start": "./node_modules/.bin/serve ./dashboard"
+    "build-front-end": "webpack",
+    "watch": "webpack --watch",
+    "serve": "./node_modules/.bin/serve ./dashboard",
+    "prestart": "npm run build && npm run build-fromt-end",
+    "start": "npm run serve"
   },
   "keywords": [
     "lighthouse",
@@ -21,10 +24,19 @@
   "author": "Alex Gibson",
   "license": "MPL-2.0",
   "dependencies": {
+    "@mozilla-protocol/core": "^5.0.0",
     "commander": "^2.14.1",
+    "copy-webpack-plugin": "^5.0.1",
+    "css-loader": "^2.1.1",
+    "eslint-loader": "^2.1.2",
+    "mini-css-extract-plugin": "^0.5.0",
     "mkdirp": "^0.5.1",
+    "node-sass": "^4.11.0",
     "request": "^2.85.0",
     "request-promise-native": "^1.0.5",
+    "sass-loader": "^7.1.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
     "webpagetest": "^0.3.8"
   },
   "devDependencies": {

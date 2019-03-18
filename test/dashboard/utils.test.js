@@ -4,7 +4,7 @@
 
 /* global describe, it */
 
-import { getDisplayName, formatBytes, formatTime, formatDate } from '../../dashboard/js/utils.js';
+import { getDisplayName, formatBytes, formatTime, formatDate } from '../../dashboard/src/js/utils.js';
 import { expect } from 'chai';
 
 describe('utils.js', function() {
