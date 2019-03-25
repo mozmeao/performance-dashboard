@@ -15,4 +15,4 @@ COPY ./test ./test/
 COPY ./sites ./sites/
 COPY ./dashboard ./dashboard/
 COPY ./jenkins ./jenkins/
-COPY ./.eslintrc.js ./.eslintignore ./app.js /app/
+COPY ./.eslintrc.js ./.eslintignore ./webpack.config.js ./app.js /app/
