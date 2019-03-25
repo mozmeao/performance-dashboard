@@ -28,9 +28,9 @@ module.exports = {
     },
     plugins: [
         new CopyPlugin([
-            { from: './dashboard/src/images/', to: './dashboard/dist/images/' },
-            { from: './dashboard/src/css/', to: './dashboard/dist/css/' },
-            { from: './node_modules/@mozilla-protocol/core/protocol/', to: './dashboard/dist/protocol/' }
+            { from: './dashboard/src/images/', to: '../images/' },
+            { from: './dashboard/src/css/', to: '../css/' },
+            { from: './node_modules/@mozilla-protocol/core/protocol/', to: '../protocol/' }
         ]),
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
