@@ -93,6 +93,7 @@ const wpt = {
                 right: d.right,
                 target: loadGraph,
                 legend: ['First Byte', 'Start Render', 'First Interactive', 'Doc Complete', 'Fully Loaded', 'Speed Index'],
+                colors: ['#4040e8', '#05b378', '#db4437', '#f8b128', '#5c5c5c', '#ad00ff'],
                 legend_target: '.legend.load-times'
             });
 
