@@ -44,7 +44,7 @@
     "eslint": "^6.0.1",
     "esm": "^3.2.5",
     "mocha": "^6.0.0",
-    "serve": "10.1.1"
+    "serve": "11.0.2"
   },
   "repository": "https://github.com/mozmeao/performance-dashboard.git",
   "private": true
