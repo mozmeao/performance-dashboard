@@ -24,7 +24,7 @@
   "author": "Alex Gibson",
   "license": "MPL-2.0",
   "dependencies": {
-    "@mozilla-protocol/core": "^5.0.0",
+    "@mozilla-protocol/core": "7.0.2",
     "commander": "^2.14.1",
     "copy-webpack-plugin": "^5.0.1",
     "css-loader": "3.0.0",

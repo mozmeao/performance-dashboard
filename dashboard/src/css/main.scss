@@ -41,7 +41,6 @@
     padding: $spacing-md;
 
     h2 {
-        @include open-sans;
         @include text-body-lg;
         word-wrap: break-word;
     }
@@ -100,9 +99,7 @@
     width: 100%;
 
     h3 {
-        @include open-sans;
         @include text-display-sm;
-        font-weight: normal;
     }
 
     .error {
@@ -123,7 +120,7 @@ meter:-moz-meter-optimum::-moz-meter-bar {
 }
 
 meter:-moz-meter-sub-optimum::-moz-meter-bar {
-    background: $color-orange-50;
+    background: $color-orange-40;
 }
 
 meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
@@ -139,7 +136,7 @@ meter::-webkit-meter-optimum-value {
 }
 
 meter::-webkit-meter-suboptimum-value {
-    background: $color-orange-50;
+    background: $color-orange-40;
 }
 
 meter::-webkit-meter-even-less-good-value {

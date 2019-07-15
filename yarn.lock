@@ -18,10 +18,10 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@mozilla-protocol/core@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@mozilla-protocol/core/-/core-5.0.0.tgz#28e1877345b81c5782871218a2e091bacc5a4e8c"
-  integrity sha512-TqG854ztxFn89Ak6Vcw1FGJelH+X36i+8sinhecrlZstKtuLstlF+RY3R49r4ya7nBHXkkQCDk00EzhQ7jJ39Q==
+"@mozilla-protocol/core@7.0.2":
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/@mozilla-protocol/core/-/core-7.0.2.tgz#661cffadeffa9aab348e43004a4c3d658e594a34"
+  integrity sha512-c7YSHE9FFqgAKTNiBgGZGVm6ClrBIfW3khITN2xyVClGuPxRW377ko4r35BB70LhOzZ26H8OGUlRN9g3/iXJpQ==
 
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
