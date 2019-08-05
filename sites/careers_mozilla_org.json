@@ -3,6 +3,6 @@
     "location": "ec2-us-west-1:Chrome",
     "connection": "3GFast",
     "pages": [
-        "https://careers.mozilla.org/en-US/"
+        "https://careers.mozilla.org/"
     ]
 }

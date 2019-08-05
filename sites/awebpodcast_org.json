@@ -1,8 +1,8 @@
 {
-    "name": "support_mozilla_org",
+    "name": "awebpodcast_org",
     "location": "ec2-us-west-1:Chrome",
     "connection": "3GFast",
     "pages": [
-        "https://support.mozilla.org/en-US/"
+        "https://awebpodcast.org/"
     ]
 }
