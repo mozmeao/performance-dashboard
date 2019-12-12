@@ -1,7 +1,7 @@
 FROM node:8-stretch
 
 WORKDIR /app
-CMD ["./jenkins/deploy.sh"]
+CMD ["./deploy.sh"]
 ENV PATH="/app/node_modules/.bin:$PATH"
 
 RUN npm install -g netlify-cli
