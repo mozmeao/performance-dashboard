@@ -1,0 +1,11 @@
+build-deploy:
+  only:
+    - master
+    - gitlab
+  tags:
+    - oregon-b-shell
+  variables:
+    DOCKER_TAG: meao-perf-dashboard:latest
+  script:
+    - docker build --pull -t "$DOCKER_TAG" .
+    - docker run -i --rm -e NETLIFY_AUTH_TOKEN -e NETLIFY_SITE_ID -e WPT_API_KEY "$DOCKER_TAG"
