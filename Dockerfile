@@ -15,3 +15,4 @@ COPY ./test ./test/
 COPY ./sites ./sites/
 COPY ./dashboard ./dashboard/
 COPY ./.eslintrc.js ./.eslintignore ./webpack.config.js ./app.js /app/
+COPY ./deploy.sh .
