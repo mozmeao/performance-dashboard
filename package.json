@@ -43,7 +43,7 @@
     "chai": "^4.2.0",
     "eslint": "6.6.0",
     "esm": "3.2.25",
-    "mocha": "6.2.2",
+    "mocha": "7.1.1",
     "serve": "11.3.0"
   },
   "repository": "https://github.com/mozmeao/performance-dashboard.git",
