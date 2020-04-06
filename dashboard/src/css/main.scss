@@ -111,7 +111,7 @@
  * Score meter styling */
 
 meter {
-    background: $color-gray-20;
+    background: $color-light-gray-20;
     max-width: 60px;
 }
 
@@ -128,7 +128,7 @@ meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
 }
 
 meter::-webkit-meter-bar {
-    background: $color-gray-20;
+    background: $color-light-gray-20;
 }
 
 meter::-webkit-meter-optimum-value {
