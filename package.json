@@ -25,19 +25,19 @@
   "license": "MPL-2.0",
   "dependencies": {
     "@mozilla-protocol/core": "11.0.1",
-    "commander": "^2.14.1",
+    "commander": "5.0.0",
     "copy-webpack-plugin": "5.1.1",
     "css-loader": "3.4.2",
     "eslint-loader": "4.0.0",
     "mini-css-extract-plugin": "0.9.0",
-    "mkdirp": "^0.5.1",
+    "mkdirp": "1.0.4",
     "node-sass": "4.13.1",
-    "request": "2.88.0",
-    "request-promise-native": "1.0.7",
+    "request": "2.88.2",
+    "request-promise-native": "1.0.8",
     "sass-loader": "8.0.2",
     "webpack": "4.42.1",
     "webpack-cli": "3.3.11",
-    "webpagetest": "^0.3.8"
+    "webpagetest": "0.3.9"
   },
   "devDependencies": {
     "chai": "^4.2.0",
