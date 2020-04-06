@@ -31,10 +31,10 @@
     "eslint-loader": "4.0.0",
     "mini-css-extract-plugin": "0.8.0",
     "mkdirp": "^0.5.1",
-    "node-sass": "4.13.0",
+    "node-sass": "4.13.1",
     "request": "2.88.0",
     "request-promise-native": "1.0.7",
-    "sass-loader": "8.0.0",
+    "sass-loader": "8.0.2",
     "webpack": "4.42.1",
     "webpack-cli": "3.3.11",
     "webpagetest": "^0.3.8"
