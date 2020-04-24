@@ -20,7 +20,7 @@ describe('trends.js', function() {
     describe('getRemoteFilePath', function() {
 
         it('should format remote file path as expected', function() {
-            expect(trends.getRemoteFilePath('www_mozilla_org', `www_mozilla_org_en-US_`)).to.equal('https://mozmeao-perf-dashboard.netlify.com/data/trends/www_mozilla_org/www_mozilla_org_en-US_.trend.json');
+            expect(trends.getRemoteFilePath('www_mozilla_org', `www_mozilla_org_en-US_`)).to.equal('https://mozmeao-perf-dashboard.netlify.app/data/trends/www_mozilla_org/www_mozilla_org_en-US_.trend.json');
         });
     });
 

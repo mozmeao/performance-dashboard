@@ -10,7 +10,7 @@ Powered by [WebPageTest](https://www.webpagetest.org/) & Google [Lighthouse](htt
 
 The app is comprised of a Node.js script (`app.js`) and a static front-end dashboard (`./dashboard/`). The `app.js` script takes a directory of website URLs (found in `./sites/`) and uses those to make batch test runs using the WebPageTest API. Once the tests are complete, the script then processes the data and stores it as JSON in the `./dashboard/data/` directory. The front-end then uses this JSON to populate the dashboard.
 
-The Node.js script is run automatically once per day in Jenkins, and the static dashboard is then pushed to [Netlify](https://mozmeao-perf-dashboard.netlify.com/).
+The Node.js script is run automatically once per day in Jenkins, and the static dashboard is then pushed to [Netlify](https://mozmeao-perf-dashboard.netlify.app/).
 
 ## Install
 
