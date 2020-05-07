@@ -3,7 +3,7 @@ build-deploy:
     - master
     - gitlab
   tags:
-    - oregon-b-shell
+    - mozmeao
   variables:
     DOCKER_TAG: meao-perf-dashboard:latest
   script:
