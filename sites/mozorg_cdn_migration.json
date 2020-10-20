@@ -1,0 +1,12 @@
+{
+    "name": "www_mozorg_moz_works",
+    "location": "ec2-us-west-1:Chrome",
+    "connection": "3GFast",
+    "pages": [
+        "https://www.mozorg.moz.works/en-US/",
+        "https://www.mozorg.moz.works/en-US/firefox/",
+        "https://www.mozorg.moz.works/en-US/firefox/mobile/",
+        "https://www.mozorg.moz.works/en-US/firefox/new/",
+        "https://www.mozorg.moz.works/en-US/firefox/accounts/"
+    ]
+}
